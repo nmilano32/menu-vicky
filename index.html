@@ -11,98 +11,101 @@
   --violet:#9B6DFF;--violet-l:#C4A8FF;--violet-d:#6B3FD4;
   --pink:#FF6B9D;--green:#6BFFB8;--green-d:#1A5C3A;
   --yellow:#FFE566;--red:#FF6B6B;--white:#F5F0FF;
-  --muted:#9B8EC4;--border:rgba(155,109,255,0.25);--border2:rgba(155,109,255,0.5);
+  --muted:#9B8EC4;--muted2:#5A4880;
+  --border:rgba(155,109,255,0.2);--border2:rgba(155,109,255,0.45);
   --r:16px;--r-sm:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;font-size:15px;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(155,109,255,0.08) 1px,transparent 1px);background-size:20px 20px;pointer-events:none;z-index:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;font-size:15px;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(155,109,255,0.07) 1px,transparent 1px);background-size:22px 22px;pointer-events:none;z-index:0;}
 
-/* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);display:flex;z-index:100;height:58px;}
-.bnav-btn{flex:1;background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:all .15s;font-family:'DM Sans',sans-serif;}
+/* NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--bg2);border-top:1px solid var(--border);display:flex;height:60px;}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;}
 .bnav-btn.active{color:var(--violet-l);}
-.bnav-btn .bicon{font-size:1.3rem;line-height:1;}
-.bnav-btn.active .bicon{filter:drop-shadow(0 0 6px rgba(155,109,255,0.6));}
+.bnav-icon{font-size:1.2rem;}
+.bnav-label{font-size:10px;font-weight:500;}
 
 /* PAGES */
-.page{display:none;padding:1rem;padding-bottom:72px;max-width:680px;margin:0 auto;position:relative;z-index:1;min-height:100vh;}
+.page{display:none;padding:1rem;padding-bottom:80px;max-width:680px;margin:0 auto;position:relative;z-index:1;}
 .page.active{display:block;}
 
-/* HEADER */
-.page-header{margin-bottom:1.25rem;}
-.page-title{font-family:'Caveat',cursive;font-size:1.8rem;color:var(--violet-l);font-weight:700;line-height:1.1;}
-.page-sub{font-size:13px;color:var(--muted);margin-top:3px;}
+/* TYPOGRAPHY */
+.page-title{font-family:'Caveat',cursive;font-size:1.8rem;font-weight:700;color:var(--violet-l);}
+.page-sub{font-size:13px;color:var(--muted);margin-top:2px;margin-bottom:1.25rem;}
+.section-title{font-family:'Caveat',cursive;font-size:1.2rem;color:var(--violet-l);margin:1rem 0 .5rem;}
 
-/* FLUJO STEPS */
-.step-indicator{display:flex;gap:6px;margin-bottom:1.5rem;align-items:center;}
-.step{display:flex;align-items:center;gap:6px;}
-.step-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--muted);flex-shrink:0;transition:all .3s;}
-.step-dot.active{background:var(--violet);border-color:var(--violet);color:#fff;}
-.step-dot.done{background:var(--green-d);border-color:var(--green);color:var(--green);}
-.step-label{font-size:11px;color:var(--muted);}
-.step-label.active{color:var(--violet-l);font-weight:500;}
-.step-sep{flex:1;height:1px;background:var(--border);}
+/* BUTTONS */
+.btn-primary{width:100%;background:var(--violet);color:#fff;border:none;border-radius:var(--r);padding:15px;font-family:'Caveat',cursive;font-size:1.2rem;cursor:pointer;margin-top:.75rem;position:relative;overflow:hidden;}
+.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 60%);}
+.btn-primary:active{transform:scale(.98);}
+.btn-secondary{width:100%;background:none;border:1px solid var(--border);border-radius:var(--r);padding:11px;font-size:13px;color:var(--muted);cursor:pointer;margin-top:8px;}
+.btn-danger{width:100%;background:rgba(255,107,107,0.15);border:1px solid rgba(255,107,107,0.4);border-radius:var(--r);padding:11px;font-size:13px;color:var(--red);cursor:pointer;margin-top:8px;}
 
-/* VERDURAS GRID */
-.verd-grid{display:flex;flex-direction:column;gap:8px;}
-.verd-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:13px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:12px;}
+/* WIZARD STEPS */
+.wizard-steps{display:flex;align-items:center;gap:4px;margin-bottom:1.5rem;}
+.wstep{flex:1;height:4px;border-radius:4px;background:var(--muted2);transition:background .3s;}
+.wstep.done{background:var(--violet);}
+.wstep.active{background:var(--violet-l);}
+
+/* VERDURA CARDS */
+.verd-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin-bottom:8px;transition:all .15s;user-select:none;}
 .verd-card.sel{background:rgba(155,109,255,0.15);border-color:var(--violet);}
-.verd-card.sel-mucho{background:rgba(255,229,102,0.12);border-color:var(--yellow);}
-.verd-emoji{font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:2px;}
-.verd-info{flex:1;}
-.verd-nombre{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--white);font-weight:700;}
+.verd-emoji{font-size:1.5rem;flex-shrink:0;margin-top:2px;}
+.verd-nombre{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--white);}
+.verd-card.sel .verd-nombre{color:var(--violet-l);}
 .verd-usos{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4;}
-.verd-consejo{font-size:11px;color:var(--muted);margin-top:4px;font-style:italic;}
-.verd-check{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+.verd-consejo{font-size:11px;color:var(--muted2);margin-top:2px;}
+.verd-check{width:22px;height:22px;border:1.5px solid var(--muted2);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:2px;}
+.verd-card.sel .verd-check{background:var(--violet);border-color:var(--violet);}
 
-/* STOCK GRID */
-.stock-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
-.stock-tag{display:flex;align-items:center;gap:5px;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:6px 11px;font-size:12px;color:var(--white);cursor:pointer;user-select:none;transition:all .15s;}
+/* STOCK */
+.stock-grid{display:flex;flex-wrap:wrap;gap:7px;}
+.stock-tag{display:flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:13px;cursor:pointer;user-select:none;background:var(--card);}
 .stock-tag.tengo{background:rgba(107,255,184,0.12);border-color:rgba(107,255,184,0.4);color:var(--green);}
-.stock-tag.mucho{background:rgba(255,229,102,0.12);border-color:rgba(255,229,102,0.4);color:var(--yellow);}
-.stock-icon{font-size:12px;}
+.stock-tag.mucho{background:rgba(255,229,102,0.15);border-color:rgba(255,229,102,0.5);color:var(--yellow);}
 
-/* MENU HOY */
-.hoy-date{font-family:'Caveat',cursive;font-size:1rem;color:var(--muted);margin-bottom:1rem;}
-.meal-big{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:12px;transition:all .3s;}
-.meal-big.done{opacity:.55;border-color:rgba(155,109,255,0.1);}
-.meal-big-head{background:var(--violet-d);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;}
+/* HOY */
+.alert-banner{background:rgba(255,229,102,0.1);border:1px solid rgba(255,229,102,0.4);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;}
+.alert-txt{font-size:13px;color:var(--yellow);}
+.alert-btn{background:var(--yellow);color:#1A0A2E;border:none;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;}
+
+.meal-big{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:12px;}
+.meal-big.done{opacity:.6;}
+.meal-big-head{background:var(--violet-d);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;}
 .meal-big-tipo{font-family:'Caveat',cursive;font-size:1.1rem;color:#fff;font-weight:700;}
-.meal-big-hora{font-size:11px;color:rgba(255,255,255,0.6);}
-.meal-big-body{padding:14px 16px;}
+.meal-big-hora{font-size:11px;color:rgba(255,255,255,.6);}
+.meal-big-body{padding:14px;}
 .meal-big-nombre{font-size:15px;font-weight:500;color:var(--white);line-height:1.3;margin-bottom:4px;}
-.meal-big-prep{font-size:12px;color:var(--muted);line-height:1.4;margin-bottom:10px;}
-.meal-big-actions{display:flex;align-items:center;justify-content:space-between;}
-.meal-big-btns{display:flex;gap:6px;}
-.tilde-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--border2);background:none;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.tilde-btn.ticked{background:var(--violet);border-color:var(--violet);}
-.action-btn{background:rgba(155,109,255,0.15);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--violet-l);padding:5px 10px;cursor:pointer;transition:all .15s;}
-.action-btn:hover{background:var(--violet);color:#fff;}
-.action-btn.yellow{background:rgba(255,229,102,0.1);border-color:rgba(255,229,102,0.3);color:var(--yellow);}
-.react-btns{display:flex;gap:4px;}
-.react-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:2px;transition:transform .15s;}
-.react-btn:active{transform:scale(1.3);}
+.meal-big-prep{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.meal-big-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.meal-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.action-btn{background:rgba(155,109,255,0.15);border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--violet-l);padding:4px 9px;cursor:pointer;}
+.action-btn.y{background:rgba(255,229,102,0.1);border-color:rgba(255,229,102,0.3);color:var(--yellow);}
+.react-row{display:flex;align-items:center;gap:6px;}
+.react-btn{background:none;border:none;font-size:16px;cursor:pointer;padding:2px;}
+.tick-btn{width:42px;height:42px;border:2px solid var(--border2);border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;background:none;transition:all .2s;}
+.tick-btn.ticked{background:var(--violet-d);border-color:var(--violet);}
+.prot-badge{font-size:11px;background:rgba(107,255,184,0.15);color:var(--green);padding:2px 8px;border-radius:20px;border:1px solid rgba(107,255,184,0.3);}
 
-/* COMPLETE MSG */
-.complete-msg{text-align:center;padding:2rem 1rem;background:var(--card);border:1px solid rgba(107,255,184,0.3);border-radius:var(--r);margin-bottom:1rem;}
-.complete-emoji{font-size:3rem;margin-bottom:.5rem;}
+.complete-card{background:rgba(107,255,184,0.1);border:1px solid rgba(107,255,184,0.3);border-radius:var(--r);padding:20px;text-align:center;margin-bottom:1rem;}
+.complete-emoji{font-size:2.5rem;margin-bottom:6px;}
 .complete-title{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--green);}
-.complete-sub{font-size:13px;color:var(--muted);margin-top:.25rem;}
+.complete-sub{font-size:13px;color:var(--muted);margin-top:4px;}
 
-/* SEMANA VIEW */
+/* SEMANA */
 .semana-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
-.semana-card-head{background:var(--violet-d);padding:9px 14px;display:flex;align-items:center;justify-content:space-between;}
-.semana-day{font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:#fff;}
-.semana-day.hoy{color:var(--yellow);}
-.semana-meal{padding:9px 14px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:65px 1fr auto;gap:8px;align-items:center;}
-.semana-meal:last-child{border-bottom:none;}
-.semana-tipo{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.semana-head{background:var(--violet-d);padding:9px 14px;display:flex;justify-content:space-between;align-items:center;}
+.semana-dia{font-family:'Caveat',cursive;font-size:1.1rem;color:#fff;font-weight:700;}
+.semana-hoy{font-size:11px;background:var(--yellow);color:#1A0A2E;border-radius:10px;padding:1px 7px;font-weight:600;}
+.semana-row{padding:9px 14px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:65px 1fr auto;gap:8px;align-items:start;}
+.semana-row:last-child{border-bottom:none;}
+.semana-tipo{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding-top:2px;}
 .semana-nombre{font-size:13px;font-weight:500;color:var(--white);line-height:1.3;}
-.semana-prot{font-size:11px;background:rgba(107,255,184,0.12);color:var(--green);padding:2px 7px;border-radius:20px;border:1px solid rgba(107,255,184,0.3);white-space:nowrap;}
-.mini-btns{display:flex;gap:3px;margin-top:4px;}
+.mini-btns{display:flex;gap:4px;margin-top:4px;}
 .mini-btn{background:rgba(155,109,255,0.12);border:1px solid var(--border);border-radius:5px;font-size:10px;color:var(--violet-l);padding:2px 6px;cursor:pointer;}
-.mini-btn.y{background:rgba(255,229,102,0.08);border-color:rgba(255,229,102,0.25);color:var(--yellow);}
+.mini-btn.y{background:rgba(255,229,102,0.1);border-color:rgba(255,229,102,0.3);color:var(--yellow);}
+.semana-prot{font-size:10px;color:var(--green);white-space:nowrap;padding-top:2px;}
 
 /* COMPRAS */
 .shop-place{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--violet-l);margin-bottom:.5rem;font-weight:700;}
@@ -111,76 +114,82 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .shop-item:last-child{border-bottom:none;}
 .shop-item.checked{opacity:.4;}
 .shop-item.checked .shop-text{text-decoration:line-through;}
-.chk{width:20px;height:20px;border:1.5px solid var(--muted);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green);transition:all .15s;}
+.chk{width:20px;height:20px;border:1.5px solid var(--muted2);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--green);}
 .shop-item.checked .chk{background:rgba(107,255,184,0.2);border-color:var(--green);}
 .shop-text{font-size:13px;flex:1;}
-.shop-qty{font-size:12px;color:var(--muted);white-space:nowrap;}
-.shop-done-msg{text-align:center;padding:1.5rem;background:rgba(107,255,184,0.08);border:1px solid rgba(107,255,184,0.3);border-radius:var(--r);margin-top:.5rem;}
+.shop-qty{font-size:11px;color:var(--muted);white-space:nowrap;}
+.shop-n{font-size:10px;color:var(--muted2);margin-left:3px;}
+.stat-row{display:flex;gap:8px;margin-bottom:1rem;}
+.stat{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px;text-align:center;}
+.stat-num{font-family:'Caveat',cursive;font-size:1.5rem;color:var(--violet-l);}
+.stat-label{font-size:11px;color:var(--muted);}
+.btn-clear{width:100%;background:none;border:1px solid var(--border);border-radius:var(--r-sm);padding:9px;font-size:13px;color:var(--muted);cursor:pointer;margin-bottom:1rem;}
+.done-banner{background:rgba(107,255,184,0.1);border:1px solid rgba(107,255,184,0.3);border-radius:var(--r);padding:16px;text-align:center;margin-top:.5rem;}
 
 /* PREP */
 .prep-block{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
-.prep-head{background:var(--bg3);padding:11px 14px;border-bottom:1px solid var(--border);}
-.prep-head-title{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--violet-l);font-weight:700;}
+.prep-head{background:var(--bg3);padding:10px 14px;border-bottom:1px solid var(--border);}
+.prep-head-title{font-family:'Caveat',cursive;font-size:1rem;color:var(--violet-l);font-weight:700;}
 .prep-head-sub{font-size:11px;color:var(--muted);margin-top:2px;}
-.prep-item{font-size:13px;color:var(--white);padding:9px 14px;border-bottom:1px solid var(--border);line-height:1.45;display:flex;align-items:flex-start;gap:8px;cursor:pointer;}
+.prep-item{font-size:13px;color:var(--white);padding:9px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;cursor:pointer;}
 .prep-item:last-child{border-bottom:none;}
-.prep-check{width:16px;height:16px;border:1.5px solid var(--muted);border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);}
-.prep-item.done .prep-check{background:rgba(107,255,184,0.2);border-color:var(--green);}
+.prep-chk{width:16px;height:16px;border:1.5px solid var(--muted2);border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);}
 .prep-item.done{opacity:.5;}
+.prep-item.done .prep-chk{background:rgba(107,255,184,0.2);border-color:var(--green);}
 .prep-item.done .prep-text{text-decoration:line-through;}
-.prep-text{flex:1;}
-.timer-btn{background:rgba(255,229,102,0.12);border:1px solid rgba(255,229,102,0.3);border-radius:6px;padding:2px 7px;font-size:11px;color:var(--yellow);cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.prep-text{flex:1;line-height:1.45;}
+.timer-btn{background:rgba(255,229,102,0.15);border:1px solid rgba(255,229,102,0.3);border-radius:6px;padding:2px 7px;font-size:11px;color:var(--yellow);cursor:pointer;white-space:nowrap;flex-shrink:0;}
 
 /* RECETAS */
-.recipe-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
-.filter-btn{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:12px;cursor:pointer;color:var(--muted);transition:all .15s;}
-.filter-btn.active{background:var(--violet);color:#fff;border-color:var(--violet);}
+.rfilters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+.rfbtn{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:12px;cursor:pointer;color:var(--muted);}
+.rfbtn.active{background:var(--violet);color:#fff;border-color:var(--violet);}
 .recipe-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;}
-.recipe-card.favorita{border-color:var(--pink);border-left:3px solid var(--pink);}
-.recipe-card.mala{opacity:.55;}
+.recipe-card.fav{border-left:3px solid var(--pink);}
+.recipe-card.mala{opacity:.5;}
 .recipe-name{font-size:14px;font-weight:500;color:var(--white);line-height:1.3;}
 .recipe-meta{font-size:12px;color:var(--muted);margin-top:3px;}
-.recipe-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
-.tag{font-size:10px;padding:2px 7px;border-radius:20px;background:rgba(155,109,255,0.15);color:var(--violet-l);border:1px solid var(--border);}
-
-/* BTNS */
-.primary-btn{width:100%;background:var(--violet);color:#fff;border:none;border-radius:var(--r);padding:15px;font-family:'Caveat',cursive;font-size:1.3rem;cursor:pointer;transition:all .15s;position:relative;overflow:hidden;}
-.primary-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.15) 0%,transparent 50%);}
-.primary-btn:active{transform:scale(0.98);}
-.secondary-btn{width:100%;background:none;border:1px solid var(--border);border-radius:var(--r);padding:12px;font-size:14px;color:var(--muted);cursor:pointer;margin-top:.5rem;}
-.clear-btn{width:100%;background:none;border:1px solid var(--border);border-radius:var(--r-sm);padding:9px;font-size:13px;color:var(--muted);cursor:pointer;margin-bottom:1rem;}
+.rtag{font-size:10px;padding:2px 7px;border-radius:20px;background:rgba(155,109,255,0.12);color:var(--violet-l);border:1px solid var(--border);margin:3px 3px 0 0;display:inline-block;}
 
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;padding:1.25rem;width:100%;max-width:680px;max-height:85vh;overflow-y:auto;}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;padding:1.25rem;width:100%;max-width:680px;max-height:84vh;overflow-y:auto;}
 .modal-title{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--violet-l);font-weight:700;margin-bottom:1rem;}
 .modal-item{padding:11px 12px;border:1px solid var(--border);border-radius:var(--r-sm);margin-bottom:6px;cursor:pointer;background:var(--card);}
 .modal-item:active{background:var(--card2);}
 .modal-item-name{font-size:14px;font-weight:500;color:var(--white);}
 .modal-item-sub{font-size:12px;color:var(--muted);margin-top:2px;}
 .modal-close{width:100%;background:none;border:1px solid var(--border);border-radius:var(--r-sm);padding:11px;font-size:14px;cursor:pointer;margin-top:.5rem;color:var(--muted);}
-.modal-back{width:100%;background:none;border:1px solid var(--border);border-radius:var(--r-sm);padding:9px;font-size:13px;cursor:pointer;margin-top:.5rem;color:var(--muted);}
 
-.note{background:rgba(155,109,255,0.08);border:1px solid var(--border);border-left:3px solid var(--violet);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:10px 14px;font-size:13px;color:var(--muted);line-height:1.6;margin:.75rem 0;}
+/* TIMER */
+.timer-clock{font-family:'Caveat',cursive;font-size:4rem;color:var(--violet-l);text-align:center;padding:1rem;}
+.timer-lbl{font-size:13px;color:var(--muted);text-align:center;margin-bottom:1rem;}
+.timer-btns{display:flex;gap:8px;}
+.timer-start{flex:1;background:var(--violet);color:#fff;border:none;border-radius:var(--r-sm);padding:11px;font-size:14px;cursor:pointer;}
+.timer-stop{flex:1;background:var(--card2);color:var(--white);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px;font-size:14px;cursor:pointer;}
+
+.note{background:rgba(155,109,255,0.1);border-left:3px solid var(--violet);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:10px 14px;font-size:13px;color:var(--muted);line-height:1.6;margin-top:.75rem;}
 .note strong{color:var(--violet-l);}
-.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--violet);color:#fff;padding:8px 18px;border-radius:20px;font-size:13px;opacity:0;transition:all .3s;z-index:300;pointer-events:none;white-space:nowrap;font-weight:500;}
+.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--violet);color:#fff;padding:8px 18px;border-radius:20px;font-size:13px;opacity:0;transition:all .3s;z-index:300;pointer-events:none;font-weight:500;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.stat-row{display:flex;gap:8px;margin-bottom:1rem;}
-.stat{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px;text-align:center;}
-.stat-num{font-family:'Caveat',cursive;font-size:1.5rem;color:var(--violet-l);}
-.stat-label{font-size:11px;color:var(--muted);}
 </style>
 </head>
 <body>
 
-<!-- PAGES -->
 <div id="page-hoy" class="page active"></div>
 <div id="page-semana" class="page"></div>
 <div id="page-compras" class="page"></div>
 <div id="page-mas" class="page"></div>
 
-<!-- MODALS -->
+<nav class="bnav">
+  <button class="bnav-btn active" id="bn-hoy" onclick="goTo('hoy',this)"><span class="bnav-icon">☀️</span><span class="bnav-label">Hoy</span></button>
+  <button class="bnav-btn" id="bn-semana" onclick="goTo('semana',this)"><span class="bnav-icon">📅</span><span class="bnav-label">Semana</span></button>
+  <button class="bnav-btn" id="bn-compras" onclick="goTo('compras',this)"><span class="bnav-icon">🛒</span><span class="bnav-label">Compras</span></button>
+  <button class="bnav-btn" id="bn-mas" onclick="goTo('mas',this)"><span class="bnav-icon">···</span><span class="bnav-label">Más</span></button>
+</nav>
+
+<!-- SWAP MODAL -->
 <div class="modal-overlay" id="modal-swap" onclick="if(event.target===this)closeModal('modal-swap')">
   <div class="modal">
     <div class="modal-title">Cambiar plato</div>
@@ -189,135 +198,146 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
   </div>
 </div>
 
+<!-- MOD MODAL -->
 <div class="modal-overlay" id="modal-mod" onclick="if(event.target===this)closeModal('modal-mod')">
   <div class="modal">
-    <div class="modal-title" id="mod-title">Modificar ingrediente</div>
+    <div class="modal-title" id="mod-title">Modificar</div>
     <div id="mod-ing-list"></div>
     <div id="mod-opc-wrap" style="display:none;">
       <div id="mod-opc-label" style="font-size:13px;color:var(--muted);margin-bottom:10px;"></div>
       <div id="mod-opc-list"></div>
-      <button class="modal-back" onclick="backModStep()">← Volver</button>
+      <button class="modal-close" onclick="backMod()">← Volver</button>
     </div>
-    <button class="modal-close" id="mod-cancel" onclick="closeModal('modal-mod')">Cancelar</button>
+    <button class="modal-close" id="mod-cancel-btn" onclick="closeModal('modal-mod')">Cancelar</button>
   </div>
 </div>
 
+<!-- CONFIRM MODAL -->
+<div class="modal-overlay" id="modal-confirm" onclick="if(event.target===this)closeModal('modal-confirm')">
+  <div class="modal">
+    <div class="modal-title">¿Empezar semana nueva?</div>
+    <p id="confirm-msg" style="font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6;"></p>
+    <button class="btn-primary" onclick="confirmarNuevaSemana()">✦ Sí, empezar de nuevo</button>
+    <button class="modal-close" onclick="closeModal('modal-confirm')">Cancelar</button>
+  </div>
+</div>
+
+<!-- TIMER MODAL -->
 <div class="modal-overlay" id="modal-timer" onclick="if(event.target===this)closeModal('modal-timer')">
   <div class="modal">
     <div class="modal-title" id="timer-title">Temporizador</div>
-    <div style="text-align:center;padding:1.5rem 1rem;">
-      <div style="font-family:'Caveat',cursive;font-size:4rem;color:var(--violet-l);" id="timer-clock">00:00</div>
-      <div style="font-size:13px;color:var(--muted);margin-top:.25rem;" id="timer-label">listo para iniciar</div>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:.5rem;">
-      <button onclick="startTimer()" style="flex:1;background:var(--violet);color:#fff;border:none;border-radius:var(--r-sm);padding:11px;font-size:14px;cursor:pointer;">▶ Iniciar</button>
-      <button onclick="resetTimer()" style="flex:1;background:var(--card2);color:var(--white);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px;font-size:14px;cursor:pointer;">✕ Reiniciar</button>
+    <div class="timer-clock" id="timer-clock">00:00</div>
+    <div class="timer-lbl" id="timer-lbl">listo para iniciar</div>
+    <div class="timer-btns">
+      <button class="timer-start" onclick="startTimer()">▶ Iniciar</button>
+      <button class="timer-stop" onclick="resetTimer()">✕ Reiniciar</button>
     </div>
     <button class="modal-close" style="margin-top:.75rem;" onclick="closeModal('modal-timer')">Cerrar</button>
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-confirm" onclick="if(event.target===this)closeModal('modal-confirm')">
-  <div class="modal">
-    <div class="modal-title">¿Generar nuevo menú?</div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;line-height:1.5;">Vas a perder el menú actual y los tildes de la semana. ¿Seguro?</p>
-    <button onclick="confirmarNuevoMenu()" style="width:100%;background:var(--violet);color:#fff;border:none;border-radius:var(--r-sm);padding:12px;font-size:14px;cursor:pointer;margin-bottom:6px;">Sí, generar nuevo menú</button>
-    <button class="modal-close" onclick="closeModal('modal-confirm')">Cancelar</button>
-  </div>
-</div>
-
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-  <button class="bnav-btn active" id="bnav-hoy" onclick="goTo('hoy',this)">
-    <span class="bicon">☀️</span><span>Hoy</span>
-  </button>
-  <button class="bnav-btn" id="bnav-semana" onclick="goTo('semana',this)">
-    <span class="bicon">📅</span><span>Semana</span>
-  </button>
-  <button class="bnav-btn" id="bnav-compras" onclick="goTo('compras',this)">
-    <span class="bicon">🛒</span><span>Compras</span>
-  </button>
-  <button class="bnav-btn" id="bnav-mas" onclick="goTo('mas',this)">
-    <span class="bicon">✦</span><span>Más</span>
-  </button>
-</nav>
-
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════
-// RECETAS
-// ══════════════════════════════════════════════
+// ═══════════ RECETAS ═══════════
 const RECETAS = [
-  {id:1,nombre:"Guiso de garbanzos con papas y pimentón",tipo:"almuerzo",base:"garbanzos",prot:18,tiempo:30,temporada:["otoño","invierno"],ing:{garbanzos:"300g",papa:"2 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes","pimentón dulce":"1 cdta","aceite de oliva":"2 cdas"},prep:"Del domingo. Recalentar 5 min.",tags:["guiso"],mod:{legumbre:["garbanzos","porotos blancos","arvejas"],verdura:["papa","batata","zapallo","zanahoria"],condimento:["pimentón dulce","pimentón ahumado","laurel"]}},
-  {id:2,nombre:"Guiso de porotos con zanahoria y laurel",tipo:"almuerzo",base:"porotos",prot:17,tiempo:30,temporada:["otoño","invierno"],ing:{"porotos blancos":"300g",zanahoria:"2 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes",laurel:"1 hoja"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["porotos blancos","garbanzos","arvejas"],verdura:["zanahoria","papa","zapallo","morrón"],condimento:["laurel","pimentón dulce","páprika"]}},
-  {id:3,nombre:"Guiso de arvejas con papas y tomate",tipo:"almuerzo",base:"arvejas",prot:16,tiempo:30,temporada:["otoño","invierno"],ing:{arvejas:"300g",papa:"2 u",cebolla:"1 u",tomate:"2 u",ajo:"2 dientes","aceite de oliva":"2 cdas"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["arvejas","garbanzos","porotos blancos"],verdura:["papa","zapallo","batata","zanahoria"],condimento:["pimentón dulce","laurel","páprika"]}},
-  {id:4,nombre:"Guiso de maíz pisado con porotos",tipo:"almuerzo",base:"maíz",prot:16,tiempo:25,temporada:["otoño","invierno"],ing:{"maíz pisado blanco":"200g","porotos blancos":"200g",cebolla:"1 u",tomate:"1 u","pimentón dulce":"1 cdta"},prep:"Del domingo. El maíz arranca primero.",tags:["guiso"],timer:{min:120,label:"maíz pisado"},mod:{verdura:["cebolla y tomate","morrón y tomate","zanahoria y tomate"],condimento:["pimentón dulce","pimentón ahumado","laurel"]}},
-  {id:5,nombre:"Guiso de garbanzos con morrón y papa",tipo:"almuerzo",base:"garbanzos",prot:18,tiempo:30,temporada:["otoño","invierno"],ing:{garbanzos:"300g",morrón:"1 u",papa:"2 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["garbanzos","porotos blancos","arvejas"],verdura:["papa","batata","zapallo"]}},
-  {id:6,nombre:"Guiso de porotos negros con zapallo",tipo:"almuerzo",base:"porotos",prot:17,tiempo:30,temporada:["otoño","invierno"],ing:{"porotos negros":"300g",zapallo:"250g",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes","pimentón ahumado":"1 cdta"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["porotos negros","garbanzos","arvejas"],verdura:["zapallo","papa","batata"]}},
-  {id:7,nombre:"Guiso de arvejas con morrón y zanahoria",tipo:"almuerzo",base:"arvejas",prot:16,tiempo:30,temporada:["otoño","invierno"],ing:{arvejas:"300g",morrón:"1 u",zanahoria:"2 u",cebolla:"1 u",tomate:"1 u"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["arvejas","garbanzos","porotos blancos"],verdura:["zanahoria","papa","zapallo"]}},
-  {id:8,nombre:"Guiso de garbanzos con batata",tipo:"almuerzo",base:"garbanzos",prot:17,tiempo:30,temporada:["otoño","invierno"],ing:{garbanzos:"300g",batata:"1 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes","pimentón dulce":"1 cdta"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["garbanzos","porotos blancos","arvejas"],verdura:["batata","papa","zapallo"]}},
-  {id:9,nombre:"Milanesa de soja con puré de papas",tipo:"almuerzo",base:"milanesa",prot:20,tiempo:20,temporada:["todo"],ing:{"milanesa de soja":"2 u",papa:"3 u","aceite de oliva":"1 cda"},prep:"Freír o al horno. Puré rápido.",tags:["milanesa"],guarnicion:"puré de papas",mod:{guarnicion:["puré de papas","puré de zapallo","papas al horno","ensalada mixta","polenta con queso"]}},
+  {id:1,nombre:"Guiso de garbanzos con papas y pimentón",tipo:"almuerzo",base:"garbanzos",prot:18,tiempo:30,temporada:["otoño","invierno"],ing:{garbanzos:"300g",papa:"2 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes","pimentón dulce":"1 cdta"},prep:"Del domingo. Recalentar 5 min.",tags:["guiso"],mod:{legumbre:["garbanzos","porotos blancos","arvejas"],verdura:["papa","batata","zapallo","zanahoria"],condimento:["pimentón dulce","pimentón ahumado","laurel"]}},
+  {id:2,nombre:"Guiso de porotos con zanahoria y laurel",tipo:"almuerzo",base:"porotos",prot:17,tiempo:30,temporada:["otoño","invierno"],ing:{"porotos blancos":"300g",zanahoria:"2 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["porotos blancos","garbanzos","arvejas"],verdura:["zanahoria","papa","zapallo","morrón"],condimento:["laurel","pimentón dulce","páprika"]}},
+  {id:3,nombre:"Guiso de arvejas con papas y tomate",tipo:"almuerzo",base:"arvejas",prot:16,tiempo:30,temporada:["otoño","invierno"],ing:{arvejas:"300g",papa:"2 u",cebolla:"1 u",tomate:"2 u",ajo:"2 dientes"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["arvejas","garbanzos","porotos blancos"],verdura:["papa","zapallo","batata","zanahoria"],condimento:["pimentón dulce","laurel","páprika"]}},
+  {id:4,nombre:"Guiso de maíz pisado con porotos",tipo:"almuerzo",base:"maíz",prot:16,tiempo:25,temporada:["otoño","invierno"],ing:{"maíz pisado blanco":"200g","porotos blancos":"200g",cebolla:"1 u",tomate:"1 u"},prep:"Del domingo. El maíz arranca primero.",tags:["guiso"],timer:{min:120,label:"maíz pisado"},mod:{verdura:["cebolla y tomate","morrón y tomate","zanahoria y tomate"],condimento:["pimentón dulce","pimentón ahumado","laurel"]}},
+  {id:5,nombre:"Guiso de garbanzos con morrón y papa",tipo:"almuerzo",base:"garbanzos",prot:18,tiempo:30,temporada:["otoño","invierno"],ing:{garbanzos:"300g",morrón:"1 u",papa:"2 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["garbanzos","porotos blancos","arvejas"],verdura:["papa","batata","zapallo"],condimento:["pimentón dulce","laurel","páprika"]}},
+  {id:6,nombre:"Guiso de porotos negros con zapallo",tipo:"almuerzo",base:"porotos",prot:17,tiempo:30,temporada:["otoño","invierno"],ing:{"porotos negros":"300g",zapallo:"250g",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["porotos negros","garbanzos","arvejas"],verdura:["zapallo","papa","batata"],condimento:["pimentón ahumado","pimentón dulce","laurel"]}},
+  {id:7,nombre:"Guiso de arvejas con morrón y zanahoria",tipo:"almuerzo",base:"arvejas",prot:16,tiempo:30,temporada:["otoño","invierno"],ing:{arvejas:"300g",morrón:"1 u",zanahoria:"2 u",cebolla:"1 u",tomate:"1 u"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["arvejas","garbanzos","porotos blancos"],verdura:["zanahoria","papa","zapallo"],condimento:["pimentón dulce","laurel","páprika"]}},
+  {id:8,nombre:"Guiso de garbanzos con batata",tipo:"almuerzo",base:"garbanzos",prot:17,tiempo:30,temporada:["otoño","invierno"],ing:{garbanzos:"300g",batata:"1 u",cebolla:"1 u",tomate:"1 u",ajo:"2 dientes"},prep:"Del domingo.",tags:["guiso"],mod:{legumbre:["garbanzos","porotos blancos","arvejas"],verdura:["batata","papa","zapallo"],condimento:["pimentón dulce","pimentón ahumado","laurel"]}},
+  {id:9,nombre:"Milanesa de soja con puré de papas",tipo:"almuerzo",base:"milanesa",prot:20,tiempo:20,temporada:["todo"],ing:{"milanesa de soja":"2 u",papa:"3 u"},prep:"Freír o horno. Puré rápido.",tags:["milanesa"],guarnicion:"puré de papas",mod:{guarnicion:["puré de papas","puré de zapallo","papas al horno","ensalada mixta","polenta con queso"]}},
   {id:10,nombre:"Milanesa de avena con ensalada mixta",tipo:"almuerzo",base:"milanesa",prot:18,tiempo:15,temporada:["todo"],ing:{"milanesa de avena":"2 u",lechuga:"¼ u",tomate:"1 u",zanahoria:"1 u"},prep:"Al horno 15 min.",tags:["milanesa"],guarnicion:"ensalada mixta",mod:{guarnicion:["ensalada mixta","puré de papas","papas al horno","polenta con queso","verduras al horno"]}},
-  {id:11,nombre:"Milanesa de soja con papas al horno",tipo:"almuerzo",base:"milanesa",prot:20,tiempo:25,temporada:["todo"],ing:{"milanesa de soja":"2 u",papa:"2 u","aceite de oliva":"2 cdas",ajo:"1 diente"},prep:"Papas 25 min, milanesa los últimos 15.",tags:["milanesa"],guarnicion:"papas al horno",timer:{min:25,label:"papas al horno"},mod:{guarnicion:["papas al horno","puré de papas","ensalada mixta","verduras al horno"]}},
-  {id:12,nombre:"Milanesa de avena con puré de zapallo",tipo:"almuerzo",base:"milanesa",prot:18,tiempo:20,temporada:["otoño","invierno"],ing:{"milanesa de avena":"2 u",zapallo:"300g","aceite de oliva":"1 cda"},prep:"Puré de zapallo hervido y pisado.",tags:["milanesa"],guarnicion:"puré de zapallo",mod:{guarnicion:["puré de zapallo","puré de papas","ensalada mixta","polenta con queso"]}},
-  {id:13,nombre:"Milanesa de soja con polenta",tipo:"almuerzo",base:"milanesa",prot:22,tiempo:15,temporada:["otoño","invierno"],ing:{"milanesa de soja":"2 u","harina de maíz (polenta)":"150g","queso rallado":"30g"},prep:"Polenta 10 min. Milanesa al horno.",tags:["milanesa","polenta"],guarnicion:"polenta con queso",mod:{guarnicion:["polenta con queso","puré de papas","papas al horno","ensalada mixta"]}},
-  {id:14,nombre:"Milanesa de avena con verduras al horno",tipo:"almuerzo",base:"milanesa",prot:18,tiempo:25,temporada:["todo"],ing:{"milanesa de avena":"2 u",zapallo:"200g",zanahoria:"1 u",morrón:"1 u","aceite de oliva":"2 cdas"},prep:"Verduras 25 min.",tags:["milanesa"],guarnicion:"verduras al horno",timer:{min:25,label:"verduras al horno"},mod:{guarnicion:["verduras al horno","puré de papas","ensalada mixta"]}},
-  {id:15,nombre:"Polenta con queso y salsa de tomate",tipo:"almuerzo",base:"polenta",prot:15,tiempo:20,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g","queso rallado":"40g",tomate:"2 u",cebolla:"½ u",ajo:"1 diente"},prep:"Salsa 10 min. Polenta 10 min.",tags:["polenta"],mod:{queso:["queso rallado","queso fresco"],salsa:["salsa de tomate","tomate y morrón","tomate y cebolla"]}},
-  {id:16,nombre:"Polenta gratinada con queso",tipo:"almuerzo",base:"polenta",prot:16,tiempo:30,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g","queso rallado":"50g","aceite de oliva":"1 cda"},prep:"Polenta, volcar en fuente, gratinar 15 min.",tags:["polenta"],timer:{min:15,label:"gratinar"},mod:{queso:["queso rallado","queso fresco"]}},
-  {id:17,nombre:"Polenta con morrón y tomate",tipo:"almuerzo",base:"polenta",prot:14,tiempo:20,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g",morrón:"1 u",tomate:"2 u",cebolla:"1 u",ajo:"1 diente"},prep:"Saltear verduras 10 min. Polenta aparte.",tags:["polenta"],mod:{verdura:["morrón y tomate","tomate y cebolla","zanahoria y tomate"]}},
-  {id:18,nombre:"Polenta con huevo frito y queso",tipo:"cena",base:"polenta",prot:17,tiempo:15,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g",huevos:"2 u","queso rallado":"30g"},prep:"Polenta 10 min. Huevo encima.",tags:["polenta","huevos"],mod:{queso:["queso rallado","queso fresco"]}},
-  {id:19,nombre:"Sopa de verduras con fideos",tipo:"cena",base:"sopa",prot:12,tiempo:25,temporada:["otoño","invierno"],ing:{zanahoria:"2 u",papa:"1 u",cebolla:"1 u",apio:"1 tallo",fideos:"80g","aceite de oliva":"1 cda"},prep:"Hervir 20 min, fideos 8 min más.",tags:["sopa"],timer:{min:25,label:"sopa de verduras"},mod:{verdura:["zanahoria y papa","zapallo y papa","zanahoria y zapallo"],fideo:["fideos","fideos finos","arroz"]}},
-  {id:20,nombre:"Crema de zapallo licuada",tipo:"cena",base:"sopa",prot:10,tiempo:25,temporada:["otoño","invierno"],ing:{zapallo:"500g",cebolla:"1 u",ajo:"1 diente","queso crema":"2 cdas","aceite de oliva":"1 cda"},prep:"Hervir y licuar. Queso crema al final.",tags:["sopa","licuada"],timer:{min:20,label:"zapallo"},mod:{base:["zapallo","zanahoria","papa y puerro"],cremoso:["queso crema","queso fresco","sin queso"]}},
-  {id:21,nombre:"Sopa de tomate con fideos",tipo:"cena",base:"sopa",prot:11,tiempo:20,temporada:["otoño","invierno"],ing:{tomate:"4 u",cebolla:"1 u",ajo:"1 diente",fideos:"80g","aceite de oliva":"1 cda"},prep:"Saltear, agua, hervir 15 min, fideos 8 min.",tags:["sopa"],mod:{fideo:["fideos","fideos finos","arroz"]}},
-  {id:22,nombre:"Crema de zanahoria licuada",tipo:"cena",base:"sopa",prot:9,tiempo:25,temporada:["otoño","invierno"],ing:{zanahoria:"4 u",cebolla:"1 u",ajo:"1 diente","queso crema":"2 cdas"},prep:"Hervir y licuar.",tags:["sopa","licuada"],timer:{min:20,label:"zanahoria"},mod:{base:["zanahoria","zapallo","papa y puerro"],cremoso:["queso crema","queso fresco","sin queso"]}},
-  {id:23,nombre:"Sopa de porotos con verduras",tipo:"cena",base:"sopa",prot:16,tiempo:15,temporada:["otoño","invierno"],ing:{"porotos blancos":"250g",zanahoria:"1 u",papa:"1 u",cebolla:"1 u",tomate:"1 u"},prep:"Porotos del domingo. Hervir 15 min.",tags:["sopa"],mod:{legumbre:["porotos blancos","garbanzos","arvejas"],verdura:["zanahoria y papa","zapallo y papa","morrón y tomate"]}},
-  {id:24,nombre:"Crema de papa y puerro",tipo:"cena",base:"sopa",prot:10,tiempo:25,temporada:["otoño","invierno"],ing:{papa:"3 u",puerro:"1 u",ajo:"1 diente","queso crema":"2 cdas","aceite de oliva":"1 cda"},prep:"Hervir y licuar.",tags:["sopa","licuada"],timer:{min:20,label:"papa y puerro"},mod:{cremoso:["queso crema","queso fresco","sin queso"]}},
-  {id:25,nombre:"Pastel de papa con soja texturizada",tipo:"almuerzo",base:"pastel",prot:22,tiempo:30,temporada:["otoño","invierno"],ing:{papa:"4 u","soja texturizada":"100g",cebolla:"1 u",tomate:"1 u","aceite de oliva":"2 cdas","queso rallado":"30g"},prep:"Hidratar soja. Puré. Armar y gratinar.",tags:["pastel"],timer:{min:20,label:"gratinar"},mod:{relleno:["soja texturizada","garbanzos","porotos blancos"],queso:["queso rallado","queso fresco"]}},
-  {id:26,nombre:"Pastel de papa con garbanzos",tipo:"almuerzo",base:"pastel",prot:20,tiempo:30,temporada:["otoño","invierno"],ing:{papa:"4 u",garbanzos:"250g",cebolla:"1 u",tomate:"1 u",morrón:"1 u","queso rallado":"30g"},prep:"Garbanzos del domingo. Gratinar.",tags:["pastel"],timer:{min:20,label:"gratinar"},mod:{relleno:["garbanzos","porotos blancos","soja texturizada"],verdura:["morrón","zanahoria"],queso:["queso rallado","queso fresco"]}},
-  {id:27,nombre:"Pastel de papa con porotos",tipo:"almuerzo",base:"pastel",prot:19,tiempo:30,temporada:["otoño","invierno"],ing:{papa:"4 u","porotos blancos":"250g",cebolla:"1 u",zanahoria:"1 u",tomate:"1 u","queso rallado":"30g"},prep:"Del domingo. Gratinar 20 min.",tags:["pastel"],timer:{min:20,label:"gratinar"},mod:{relleno:["porotos blancos","garbanzos","soja texturizada"],verdura:["zanahoria","morrón","zapallo"],queso:["queso rallado","queso fresco"]}},
-  {id:28,nombre:"Zapallo y zanahoria al horno con queso",tipo:"cena",base:"verduras",prot:12,tiempo:30,temporada:["otoño","invierno"],ing:{zapallo:"300g",zanahoria:"2 u","queso rallado":"40g","aceite de oliva":"2 cdas"},prep:"Horno 25-30 min a 200°.",tags:["verduras"],timer:{min:28,label:"verduras al horno"},mod:{verdura:["zapallo y zanahoria","morrón y cebolla","berenjena y tomate"],queso:["queso rallado","queso fresco","sin queso"]}},
-  {id:29,nombre:"Morrón y cebolla al horno con huevo",tipo:"cena",base:"verduras",prot:15,tiempo:25,temporada:["todo"],ing:{morrón:"2 u",cebolla:"1 u",huevos:"2 u","aceite de oliva":"2 cdas"},prep:"Asar morrón y cebolla, huevo 8 min al final.",tags:["verduras","huevos"],timer:{min:20,label:"morrón al horno"},mod:{verdura:["morrón y cebolla","berenjena y tomate","zapallo y zanahoria"]}},
-  {id:30,nombre:"Berenjena al horno con tomate y queso",tipo:"cena",base:"verduras",prot:13,tiempo:30,temporada:["todo"],ing:{berenjena:"1 u",tomate:"2 u","queso rallado":"40g","aceite de oliva":"2 cdas",ajo:"1 diente"},prep:"Rodajas, tomate, queso. Horno 25 min.",tags:["verduras"],timer:{min:25,label:"berenjena"},mod:{queso:["queso rallado","queso fresco"]}},
-  {id:31,nombre:"Zapallo al horno relleno con queso",tipo:"cena",base:"verduras",prot:14,tiempo:35,temporada:["otoño","invierno"],ing:{zapallo:"½ u","queso fresco":"100g",tomate:"1 u","aceite de oliva":"2 cdas"},prep:"Rellenar y hornear 30-35 min.",tags:["verduras"],timer:{min:32,label:"zapallo relleno"},mod:{queso:["queso fresco","queso rallado"]}},
-  {id:32,nombre:"Papa al horno con queso y cebolla",tipo:"cena",base:"verduras",prot:13,tiempo:40,temporada:["todo"],ing:{papa:"3 u","queso rallado":"40g",cebolla:"1 u","aceite de oliva":"2 cdas"},prep:"Rodajas, horno 35-40 min.",tags:["verduras"],timer:{min:38,label:"papas al horno"},mod:{queso:["queso rallado","queso fresco"]}},
+  {id:11,nombre:"Milanesa de soja con papas al horno",tipo:"almuerzo",base:"milanesa",prot:20,tiempo:25,temporada:["todo"],ing:{"milanesa de soja":"2 u",papa:"2 u",ajo:"1 diente"},prep:"Papas al horno 25 min.",tags:["milanesa"],guarnicion:"papas al horno",timer:{min:25,label:"papas al horno"},mod:{guarnicion:["papas al horno","puré de papas","ensalada mixta","verduras al horno"]}},
+  {id:12,nombre:"Milanesa de avena con puré de zapallo",tipo:"almuerzo",base:"milanesa",prot:18,tiempo:20,temporada:["otoño","invierno"],ing:{"milanesa de avena":"2 u",zapallo:"300g"},prep:"Puré de zapallo hervido.",tags:["milanesa"],guarnicion:"puré de zapallo",mod:{guarnicion:["puré de zapallo","puré de papas","ensalada mixta","polenta con queso"]}},
+  {id:13,nombre:"Milanesa de soja con polenta y queso",tipo:"almuerzo",base:"milanesa",prot:22,tiempo:15,temporada:["otoño","invierno"],ing:{"milanesa de soja":"2 u","harina de maíz (polenta)":"150g","queso rallado":"30g"},prep:"Polenta 10 min revolviendo.",tags:["milanesa","polenta"],guarnicion:"polenta con queso",mod:{guarnicion:["polenta con queso","puré de papas","papas al horno","ensalada mixta"]}},
+  {id:14,nombre:"Milanesa de avena con verduras al horno",tipo:"almuerzo",base:"milanesa",prot:18,tiempo:25,temporada:["todo"],ing:{"milanesa de avena":"2 u",zapallo:"200g",zanahoria:"1 u",morrón:"1 u"},prep:"Verduras al horno 25 min.",tags:["milanesa"],guarnicion:"verduras al horno",timer:{min:25,label:"verduras al horno"},mod:{guarnicion:["verduras al horno","puré de papas","ensalada mixta","polenta con queso"]}},
+  {id:15,nombre:"Polenta con queso y salsa de tomate",tipo:"almuerzo",base:"polenta",prot:15,tiempo:20,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g","queso rallado":"40g",tomate:"2 u",cebolla:"½ u",ajo:"1 diente"},prep:"Salsa 10 min. Polenta 10 min.",tags:["polenta"],mod:{queso:["queso rallado","queso fresco"],salsa:["salsa de tomate","tomate y morrón"]}},
+  {id:16,nombre:"Polenta gratinada al horno con queso",tipo:"almuerzo",base:"polenta",prot:16,tiempo:30,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g","queso rallado":"50g"},prep:"Hacer polenta, volcar en fuente, gratinar 15 min.",tags:["polenta"],timer:{min:15,label:"gratinar al horno"},mod:{queso:["queso rallado","queso fresco"]}},
+  {id:17,nombre:"Polenta con morrón y tomate salteados",tipo:"almuerzo",base:"polenta",prot:14,tiempo:20,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g",morrón:"1 u",tomate:"2 u",cebolla:"1 u"},prep:"Saltear verduras 10 min. Polenta aparte.",tags:["polenta"],mod:{verdura:["morrón y tomate","tomate y cebolla"]}},
+  {id:18,nombre:"Polenta con huevo frito y queso",tipo:"cena",base:"polenta",prot:17,tiempo:15,temporada:["otoño","invierno"],ing:{"harina de maíz (polenta)":"150g",huevos:"2 u","queso rallado":"30g"},prep:"Polenta 10 min. Huevo frito encima.",tags:["polenta","huevos"],mod:{queso:["queso rallado","queso fresco"]}},
+  {id:19,nombre:"Sopa de verduras con fideos",tipo:"cena",base:"sopa",prot:12,tiempo:25,temporada:["otoño","invierno"],ing:{zanahoria:"2 u",papa:"1 u",cebolla:"1 u",fideos:"80g"},prep:"Hervir verduras 20 min, agregar fideos 8 min.",tags:["sopa"],timer:{min:25,label:"sopa de verduras"},mod:{verdura:["zanahoria y papa","zapallo y papa"],fideo:["fideos","fideos cabello de ángel","arroz"]}},
+  {id:20,nombre:"Crema de zapallo licuada",tipo:"cena",base:"sopa",prot:10,tiempo:25,temporada:["otoño","invierno"],ing:{zapallo:"500g",cebolla:"1 u",ajo:"1 diente","queso crema":"2 cdas"},prep:"Hervir y licuar. Queso crema al final.",tags:["sopa","licuada"],timer:{min:20,label:"zapallo"},mod:{base:["zapallo","zanahoria","papa y puerro"],cremoso:["queso crema","queso fresco","sin queso"]}},
+  {id:21,nombre:"Sopa de tomate con fideos finos",tipo:"cena",base:"sopa",prot:11,tiempo:20,temporada:["otoño","invierno"],ing:{tomate:"4 u",cebolla:"1 u",ajo:"1 diente",fideos:"80g"},prep:"Saltear, hervir 15 min, fideos 8 min.",tags:["sopa"],mod:{fideo:["fideos","fideos cabello de ángel","arroz"]}},
+  {id:22,nombre:"Crema de zanahoria licuada",tipo:"cena",base:"sopa",prot:9,tiempo:25,temporada:["otoño","invierno"],ing:{zanahoria:"4 u",cebolla:"1 u","queso crema":"2 cdas"},prep:"Hervir y licuar. Queso crema al servir.",tags:["sopa","licuada"],timer:{min:20,label:"zanahoria"},mod:{base:["zanahoria","zapallo","papa y puerro"],cremoso:["queso crema","queso fresco","sin queso"]}},
+  {id:23,nombre:"Sopa de porotos con verduras",tipo:"cena",base:"sopa",prot:16,tiempo:15,temporada:["otoño","invierno"],ing:{"porotos blancos":"250g",zanahoria:"1 u",papa:"1 u",cebolla:"1 u",tomate:"1 u"},prep:"Porotos del domingo. Hervir verduras 15 min.",tags:["sopa"],mod:{legumbre:["porotos blancos","garbanzos","arvejas"]}},
+  {id:24,nombre:"Crema de papa y puerro",tipo:"cena",base:"sopa",prot:10,tiempo:25,temporada:["otoño","invierno"],ing:{papa:"3 u",puerro:"1 u",ajo:"1 diente","queso crema":"2 cdas"},prep:"Hervir y licuar. Queso crema al servir.",tags:["sopa","licuada"],timer:{min:20,label:"papa y puerro"},mod:{cremoso:["queso crema","queso fresco","sin queso"]}},
+  {id:25,nombre:"Pastel de papa con soja texturizada",tipo:"almuerzo",base:"pastel",prot:22,tiempo:30,temporada:["otoño","invierno"],ing:{papa:"4 u","soja texturizada":"100g",cebolla:"1 u",tomate:"1 u","queso rallado":"30g"},prep:"Hidratar soja. Puré + relleno + gratinar.",tags:["pastel"],timer:{min:20,label:"gratinar"},mod:{relleno:["soja texturizada","garbanzos","porotos blancos"],queso:["queso rallado","queso fresco"]}},
+  {id:26,nombre:"Pastel de papa con garbanzos",tipo:"almuerzo",base:"pastel",prot:20,tiempo:30,temporada:["otoño","invierno"],ing:{papa:"4 u",garbanzos:"250g",cebolla:"1 u",tomate:"1 u",morrón:"1 u","queso rallado":"30g"},prep:"Garbanzos del domingo. Puré + relleno + gratinar.",tags:["pastel"],timer:{min:20,label:"gratinar"},mod:{relleno:["garbanzos","porotos blancos","soja texturizada"],queso:["queso rallado","queso fresco"]}},
+  {id:27,nombre:"Pastel de papa con porotos y verduras",tipo:"almuerzo",base:"pastel",prot:19,tiempo:30,temporada:["otoño","invierno"],ing:{papa:"4 u","porotos blancos":"250g",cebolla:"1 u",zanahoria:"1 u",tomate:"1 u","queso rallado":"30g"},prep:"Del domingo. Armar y gratinar 20 min.",tags:["pastel"],timer:{min:20,label:"gratinar"},mod:{relleno:["porotos blancos","garbanzos","soja texturizada"],queso:["queso rallado","queso fresco"]}},
+  {id:28,nombre:"Zapallo y zanahoria al horno con queso",tipo:"cena",base:"verduras",prot:12,tiempo:30,temporada:["otoño","invierno"],ing:{zapallo:"300g",zanahoria:"2 u","queso rallado":"40g"},prep:"Horno 25-30 min a 200°.",tags:["verduras"],timer:{min:28,label:"verduras al horno"},mod:{verdura:["zapallo y zanahoria","morrón y cebolla","berenjena y tomate"],queso:["queso rallado","queso fresco","sin queso"]}},
+  {id:29,nombre:"Morrón y cebolla al horno con huevo",tipo:"cena",base:"verduras",prot:15,tiempo:25,temporada:["todo"],ing:{morrón:"2 u",cebolla:"1 u",huevos:"2 u"},prep:"Asar verduras, agregar huevo los últimos 8 min.",tags:["verduras","huevos"],timer:{min:20,label:"morrón al horno"},mod:{verdura:["morrón y cebolla","berenjena y tomate","zapallo y zanahoria"]}},
+  {id:30,nombre:"Berenjena al horno con tomate y queso",tipo:"cena",base:"verduras",prot:13,tiempo:30,temporada:["todo"],ing:{berenjena:"1 u",tomate:"2 u","queso rallado":"40g",ajo:"1 diente"},prep:"Rodajas, tomate, queso. Horno 25 min.",tags:["verduras"],timer:{min:25,label:"berenjena al horno"},mod:{queso:["queso rallado","queso fresco"]}},
+  {id:31,nombre:"Zapallo al horno relleno con queso",tipo:"cena",base:"verduras",prot:14,tiempo:35,temporada:["otoño","invierno"],ing:{zapallo:"½ u","queso fresco":"100g",tomate:"1 u"},prep:"Rellenar y hornear 30-35 min.",tags:["verduras"],timer:{min:32,label:"zapallo relleno"},mod:{queso:["queso fresco","queso rallado"]}},
+  {id:32,nombre:"Papa al horno con queso y cebolla",tipo:"cena",base:"verduras",prot:13,tiempo:40,temporada:["todo"],ing:{papa:"3 u","queso rallado":"40g",cebolla:"1 u"},prep:"Papas en rodajas, horno 35-40 min.",tags:["verduras"],timer:{min:38,label:"papas al horno"},mod:{queso:["queso rallado","queso fresco"]}},
   {id:33,nombre:"Huevos revueltos con tomate y morrón",tipo:"cena",base:"huevos",prot:18,tiempo:10,temporada:["todo"],ing:{huevos:"3 u",tomate:"1 u",morrón:"1 u",cebolla:"½ u"},prep:"10 min.",tags:["huevos"],mod:{verdura:["tomate y morrón","tomate y cebolla","morrón y cebolla"]}},
-  {id:34,nombre:"Tortilla de papa y cebolla",tipo:"cena",base:"huevos",prot:17,tiempo:20,temporada:["todo"],ing:{huevos:"3 u",papa:"1 u",cebolla:"1 u","aceite de oliva":"2 cdas"},prep:"Papa cocida previamente.",tags:["huevos"],mod:{verdura:["papa y cebolla","morrón y cebolla","zapallo y cebolla"]}},
-  {id:35,nombre:"Huevos pochados con puré de zapallo",tipo:"cena",base:"huevos",prot:16,tiempo:20,temporada:["otoño","invierno"],ing:{huevos:"2 u",zapallo:"300g","aceite de oliva":"1 cda"},prep:"Puré de zapallo + huevos pochados encima.",tags:["huevos"],mod:{base:["zapallo","papa","zanahoria"]}},
+  {id:34,nombre:"Tortilla de papa y cebolla",tipo:"cena",base:"huevos",prot:17,tiempo:20,temporada:["todo"],ing:{huevos:"3 u",papa:"1 u",cebolla:"1 u"},prep:"Papa cocida previamente.",tags:["huevos"],mod:{verdura:["papa y cebolla","morrón y cebolla","zapallo y cebolla"]}},
+  {id:35,nombre:"Huevos pochados con puré de zapallo",tipo:"cena",base:"huevos",prot:16,tiempo:20,temporada:["otoño","invierno"],ing:{huevos:"2 u",zapallo:"300g"},prep:"Puré de zapallo + huevos pochados encima.",tags:["huevos"],mod:{base:["zapallo","papa","zanahoria"]}},
 ];
 
-const COMPRA_REAL = {
-  // unit: unidad de compra, per: cantidad por uso, pack: unidad minima de venta, max: tope maximo
-  papa:{unit:"kg",per:0.3,pack:1,max:2},zanahoria:{unit:"kg",per:0.2,pack:1,max:1},
-  zapallo:{unit:"kg",per:0.3,pack:0.5,max:1.5},cebolla:{unit:"kg",per:0.15,pack:1,max:1},
-  tomate:{unit:"kg",per:0.2,pack:1,max:2},morrón:{unit:"u",per:0.5,pack:1,max:4},
-  berenjena:{unit:"u",per:0.5,pack:1,max:2},lechuga:{unit:"u",per:0.25,pack:1,max:1},
-  garbanzos:{unit:"g",per:300,pack:500,max:1000},arvejas:{unit:"g",per:300,pack:500,max:1000},
-  "porotos blancos":{unit:"g",per:300,pack:500,max:1000},"porotos negros":{unit:"g",per:300,pack:500,max:1000},
-  "maíz pisado blanco":{unit:"g",per:200,pack:500,max:500},"soja texturizada":{unit:"g",per:100,pack:200,max:400},
-  "harina de maíz (polenta)":{unit:"g",per:150,pack:500,max:500},fideos:{unit:"g",per:80,pack:500,max:500},
-  "milanesa de soja":{unit:"u",per:2,pack:4,max:8},"milanesa de avena":{unit:"u",per:2,pack:4,max:8},
-  huevos:{unit:"docena",per:0.5,pack:1,max:2},"queso rallado":{unit:"g",per:40,pack:200,max:400},
-  "queso fresco":{unit:"g",per:100,pack:200,max:400},"queso crema":{unit:"u",per:1,pack:1,max:2},
-  "aceite de oliva":{unit:"botella",per:1,pack:1,max:1},
-  ajo:{unit:"cabeza",per:0.3,pack:1,max:2},laurel:{unit:"sobre",per:0,pack:0,max:0},
-  "aceite de oliva":{unit:"botella",per:0,pack:0,max:1},
-  "pimentón dulce":{unit:"sobre",per:0,pack:0,max:0},"pimentón ahumado":{unit:"sobre",per:0,pack:0,max:0},
+// Cantidades de compra reales con topes
+const COMPRA = {
+  papa:       {unit:"kg", por_uso:0.4, pack:1,   max:2},
+  zanahoria:  {unit:"kg", por_uso:0.2, pack:0.5, max:1},
+  zapallo:    {unit:"kg", por_uso:0.3, pack:0.5, max:1.5},
+  cebolla:    {unit:"kg", por_uso:0.1, pack:1,   max:1},
+  tomate:     {unit:"kg", por_uso:0.2, pack:1,   max:2},
+  morrón:     {unit:"u",  por_uso:0.5, pack:1,   max:4},
+  berenjena:  {unit:"u",  por_uso:0.5, pack:1,   max:2},
+  lechuga:    {unit:"u",  por_uso:0.25,pack:1,   max:1},
+  batata:     {unit:"u",  por_uso:0.5, pack:1,   max:2},
+  puerro:     {unit:"u",  por_uso:0.5, pack:1,   max:2},
+  ajo:        {unit:"cabeza", por_uso:0.2, pack:1, max:1},
+  huevos:     {unit:"docena", por_uso:0.25, pack:1, max:2},
+  garbanzos:       {unit:"g", por_uso:300, pack:500, max:1000},
+  arvejas:         {unit:"g", por_uso:300, pack:500, max:1000},
+  "porotos blancos":{unit:"g",por_uso:300, pack:500, max:1000},
+  "porotos negros": {unit:"g",por_uso:300, pack:500, max:1000},
+  "maíz pisado blanco":{unit:"g",por_uso:200,pack:500,max:500},
+  "soja texturizada":{unit:"g",por_uso:100, pack:200, max:400},
+  "harina de maíz (polenta)":{unit:"g",por_uso:150,pack:500,max:500},
+  fideos:          {unit:"g", por_uso:80,  pack:500, max:500},
+  "milanesa de soja":  {unit:"u", por_uso:2, pack:4, max:8},
+  "milanesa de avena": {unit:"u", por_uso:2, pack:4, max:8},
+  "queso rallado": {unit:"g", por_uso:40, pack:200, max:400},
+  "queso fresco":  {unit:"g", por_uso:100,pack:200, max:400},
+  "queso crema":   {unit:"pote",por_uso:0.5,pack:1, max:2},
 };
+
+function formatQty(ing, n) {
+  const c = COMPRA[ing.toLowerCase()] || COMPRA[ing];
+  if (!c) return null;
+  let raw = Math.min(c.por_uso * n, c.max);
+  const packs = Math.ceil(raw / c.pack);
+  const qty = Math.min(packs * c.pack, c.max);
+  if (c.unit === 'kg') return qty < 1 ? `${Math.round(qty*1000)}g` : `${qty}kg`;
+  if (c.unit === 'g') return `${qty}g`;
+  if (c.unit === 'u') return `${Math.round(qty)} u`;
+  if (c.unit === 'cabeza') return `${Math.ceil(qty)} cabeza${Math.ceil(qty)>1?'s':''}`;
+  if (c.unit === 'docena') return `${packs} docena${packs>1?'s':''}`;
+  if (c.unit === 'pote') return `${Math.ceil(qty)} pote${Math.ceil(qty)>1?'s':''}`;
+  return `${qty} ${c.unit}`;
+}
+
+const VERDULERIA_K = ['papa','zanahoria','zapallo','cebolla','tomate','morrón','ajo','berenjena','lechuga','batata','puerro','pepino','apio'];
+const DIETETICA_K  = ['garbanzos','porotos','arvejas','maíz','soja','milanesa','harina de maíz','fideos'];
 
 const VERDURAS_ESTACION = {
   invierno:[
     {nombre:"Zapallo",emoji:"🎃",usos:"Puré, guiso, sopa licuada, relleno al horno",consejo:"Elegí uno pesado y de cáscara firme. Rinde mucho."},
     {nombre:"Papa",emoji:"🥔",usos:"Puré, guiso, pastel, al horno, sopa",consejo:"Las blancas para puré, las coloradas para horno."},
     {nombre:"Batata",emoji:"🍠",usos:"Puré, guiso, al horno",consejo:"Más dulce que la papa, queda muy bien en guisos."},
-    {nombre:"Zanahoria",emoji:"🥕",usos:"Guiso, sopa, crudité, licuada",consejo:"Más dulce en invierno. Comprar en bolsa de 1kg."},
+    {nombre:"Zanahoria",emoji:"🥕",usos:"Guiso, sopa, crudité, licuada",consejo:"Más dulce en invierno. Siempre barata."},
     {nombre:"Cebolla",emoji:"🧅",usos:"Base de todo, guisos, sopas, tortillas",consejo:"Comprar en malla de 1kg sale mucho más barato."},
-    {nombre:"Puerro",emoji:"🌿",usos:"Sopa, crema licuada, guiso",consejo:"Reemplaza la cebolla con sabor más suave."},
-    {nombre:"Apio",emoji:"🌿",usos:"Sopa de verduras, caldo base",consejo:"Unas pocas ramas dan mucho sabor al caldo."},
+    {nombre:"Puerro",emoji:"🌿",usos:"Sopa, crema licuada, guiso",consejo:"Sabor más suave que la cebolla. Muy bueno en cremas."},
+    {nombre:"Apio",emoji:"🌿",usos:"Sopa, caldo base",consejo:"Unas pocas ramas dan mucho sabor al caldo."},
     {nombre:"Acelga",emoji:"🥬",usos:"Salteada, en guiso, tortilla, tarta",consejo:"Muy rendidora. Cocinar con ajo y oliva."},
     {nombre:"Espinaca",emoji:"🌿",usos:"Salteada, en tortilla, crema, tarta",consejo:"Se reduce mucho al cocinar. Comprar bastante."},
     {nombre:"Brócoli",emoji:"🥦",usos:"Al vapor, salteado, gratinado, en guiso",consejo:"No sobrecocinar — queda mejor al dente."},
-    {nombre:"Coliflor",emoji:"🤍",usos:"Al horno, gratinada, en puré, en guiso",consejo:"Gratinada con queso es una de las mejores formas."},
+    {nombre:"Coliflor",emoji:"🤍",usos:"Al horno, gratinada, en puré",consejo:"Gratinada con queso es una de las mejores formas."},
     {nombre:"Alcaucil",emoji:"🌸",usos:"Hervido, al horno, relleno",consejo:"Pico de temporada en invierno. Comerlos frescos."},
     {nombre:"Repollo",emoji:"🥬",usos:"Ensalada cruda, guiso, rehogado",consejo:"Barato, rinde mucho, dura semanas en heladera."},
     {nombre:"Repollito de Bruselas",emoji:"🟢",usos:"Al horno, salteado, al vapor",consejo:"Al horno con oliva y sal quedan crujientes y ricos."},
@@ -329,7 +349,7 @@ const VERDURAS_ESTACION = {
     {nombre:"Ajo",emoji:"🧄",usos:"Base de todo",consejo:"Comprar cabeza entera, dura meses fuera de la heladera."},
   ],
   otoño:[
-    {nombre:"Zapallo",emoji:"🎃",usos:"Puré, guiso, sopa licuada, relleno al horno",consejo:"Mejor época del año para el zapallo. Aprovecharlo."},
+    {nombre:"Zapallo",emoji:"🎃",usos:"Puré, guiso, sopa licuada, relleno al horno",consejo:"Mejor época del año para el zapallo."},
     {nombre:"Berenjena",emoji:"🍆",usos:"Al horno, rellena, salteada",consejo:"Salarla 10 min antes de cocinar para que no amargue."},
     {nombre:"Morrón",emoji:"🫑",usos:"Guiso, al horno, salteado",consejo:"El rojo es más dulce, el verde más intenso."},
     {nombre:"Tomate",emoji:"🍅",usos:"Salsa, guiso, sopa, crudo",consejo:"En otoño todavía están buenos y más baratos."},
@@ -366,21 +386,19 @@ const VERDURAS_ESTACION = {
     {nombre:"Cebolla de verdeo",emoji:"🌿",usos:"Cruda, salteada, tortilla",consejo:"Sabor más suave que la cebolla común."},
     {nombre:"Berro",emoji:"🌿",usos:"Ensalada cruda, sopa",consejo:"Sabor ligeramente picante. Muy nutritivo."},
     {nombre:"Hinojo",emoji:"🌿",usos:"Crudo en ensalada, al horno",consejo:"Últimas semanas antes del calor."},
-    {nombre:"Zanahoria",emoji:"🥕",usos:"Cruda, cocida, en guiso",consejo:"Siempre disponible."},
   ],
   verano:[
-    {nombre:"Tomate",emoji:"🍅",usos:"Salsa, crudo, ensalada",consejo:"La mejor época. Comprar en cantidad para hacer salsa y frizar."},
+    {nombre:"Tomate",emoji:"🍅",usos:"Salsa, crudo, ensalada",consejo:"La mejor época. Comprar en cantidad para salsa."},
     {nombre:"Morrón",emoji:"🫑",usos:"Asado, crudo, relleno",consejo:"Abundante y barato. Ideal para asar y frizar."},
     {nombre:"Zapallito",emoji:"🥒",usos:"Salteado, relleno, tortilla",consejo:"Muy fácil y rápido de cocinar."},
     {nombre:"Berenjena",emoji:"🍆",usos:"Al horno, rellena, a la plancha",consejo:"Mejor época del año para la berenjena."},
-    {nombre:"Choclo",emoji:"🌽",usos:"Hervido, desgranado en ensalada, en guiso",consejo:"Fresco es incomparablemente mejor que en lata."},
+    {nombre:"Choclo",emoji:"🌽",usos:"Hervido, desgranado en ensalada",consejo:"Fresco es incomparablemente mejor que en lata."},
     {nombre:"Pepino",emoji:"🥒",usos:"Ensalada, crudo con sal",consejo:"Muy refrescante en el calor."},
     {nombre:"Lechuga",emoji:"🥬",usos:"Ensalada",consejo:"Muchas variedades: mantecosa, criolla, romana."},
     {nombre:"Albahaca",emoji:"🌿",usos:"Pesto, salsa, con tomate",consejo:"Solo en verano fresca. Se puede congelar en aceite."},
     {nombre:"Chaucha",emoji:"🫘",usos:"Al vapor, salteada, en ensalada",consejo:"Plena temporada. Muy tiernas."},
     {nombre:"Rúcula",emoji:"🌿",usos:"Ensalada cruda, con tomate y queso",consejo:"Sabor intenso. Mejor fresca y sin cocinar."},
     {nombre:"Ají",emoji:"🌶️",usos:"Salsa, relleno, condimento",consejo:"Muchas variedades. El verde es más suave."},
-    {nombre:"Okra",emoji:"🟢",usos:"Salteada, en guiso, al horno",consejo:"Poco común pero cada vez más en verdulerías."},
     {nombre:"Berro",emoji:"🌿",usos:"Ensalada cruda, sopa fría",consejo:"Muy nutritivo. Mejor crudo en ensaladas frescas."},
     {nombre:"Cebolla de verdeo",emoji:"🌿",usos:"Cruda, salteada",consejo:"Abundante en verano. Muy versátil."},
     {nombre:"Rabanito",emoji:"🔴",usos:"Ensalada cruda",consejo:"Para dar frescura y color."},
@@ -389,211 +407,208 @@ const VERDURAS_ESTACION = {
 
 const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
 
-// ══════════════════════════════════════════════
-// ESTADO
-// ══════════════════════════════════════════════
+// ═══════════ ESTADO ═══════════
 let state = {
-  // Flujo semanal
-  flujoStep: 0,        // 0=sin menu, 1=verduras, 2=stock, 3=menu generado
-  verdurasGanas: [],   // nombres marcados con ganas
-  stockPropio: {},     // {ing: 0=no, 1=tengo, 2=mucho}
-  menu: [],
-  ticks: {},           // {`dia_tipo`: bool}
-  comprasChecked: [],
-  prepChecked: [],
-  semanaGenerada: null,
-  // Preferencias
+  // wizard: 0=verduras, 1=stock, 2=generar, 3=menu listo
+  wizard: 0,
+  menu: [],           // [{dia, almuerzo_id, cena_id}]
   favoritos: [],
   malas: [],
+  ticks: {},          // {`${dayIdx}_almuerzo`: bool}
+  comprasChecked: [],
+  prepChecked: [],
+  stockPropio: {},    // {ing: 0|1|2}
+  verdurasGanas: [],
   historial: [],
+  semanaTs: null,     // timestamp del lunes de la semana generada
   currentSeason: getSeason(),
 };
 
-function getSeason(){const m=new Date().getMonth()+1;if(m>=6&&m<=8)return"invierno";if(m>=9&&m<=11)return"primavera";if(m===12||m<=2)return"verano";return"otoño";}
-function getLunes(){const d=new Date();const day=d.getDay();const diff=d.getDate()-(day===0?6:day-1);d.setDate(diff);d.setHours(0,0,0,0);return d.getTime();}
-function load(){try{const s=localStorage.getItem('vickyV4');if(s)state={...state,...JSON.parse(s)};}catch(e){}}
-function save(){localStorage.setItem('vickyV4',JSON.stringify(state));}
+function getSeason(){
+  const m = new Date().getMonth()+1;
+  if(m>=6&&m<=8) return "invierno";
+  if(m>=9&&m<=11) return "primavera";
+  if(m===12||m<=2) return "verano";
+  return "otoño";
+}
+function getLunes(){
+  const d=new Date(); const day=d.getDay();
+  const diff=d.getDate()-(day===0?6:day-1);
+  d.setDate(diff); d.setHours(0,0,0,0); return d.getTime();
+}
+function load(){ try{ const s=localStorage.getItem('vickyV4'); if(s) state={...state,...JSON.parse(s)}; }catch(e){} }
+function save(){ localStorage.setItem('vickyV4',JSON.stringify(state)); }
 
-// ══════════════════════════════════════════════
-// GENERACIÓN
-// ══════════════════════════════════════════════
-function getEligible(tipo,usedIds=[]){
-  const s=state.currentSeason;
+// ═══════════ GENERACIÓN ═══════════
+function getEligible(tipo, usedIds=[]){
+  const s = state.currentSeason;
   return RECETAS.filter(r=>{
-    if(r.tipo!==tipo)return false;
-    if(usedIds.includes(r.id))return false;
-    if(state.malas.includes(r.id))return false;
+    if(r.tipo!==tipo) return false;
+    if(usedIds.includes(r.id)) return false;
+    if(state.malas.includes(r.id)) return false;
     return r.temporada.includes(s)||r.temporada.includes("todo");
   });
 }
 
 function weightedPick(pool){
-  const favs=state.favoritos;
-  const recent=state.historial.slice(-14);
-  const stock=state.stockPropio;
-  const ganas=state.verdurasGanas;
+  if(!pool.length) return null;
   const weighted=[];
   pool.forEach(r=>{
     let w=1;
-    if(favs.includes(r.id))w+=3;
-    if(recent.includes(r.id))w=Math.max(1,w-2);
-    if(r.ing){
-      Object.keys(r.ing).forEach(ing=>{
-        if(stock[ing]===2)w+=2;    // 🔥 mucho
-        if(stock[ing]===1)w+=0.5; // ✓ tengo
-        // boost si coincide con verdura con ganas
-        if(ganas.some(g=>ing.toLowerCase().includes(g.toLowerCase())))w+=1.5;
-      });
-    }
-    for(let i=0;i<Math.round(w);i++)weighted.push(r);
+    if(state.favoritos.includes(r.id)) w+=3;
+    if(state.historial.slice(-14).includes(r.id)) w=Math.max(1,w-2);
+    // boost si usa verduras con ganas o stock mucho
+    if(r.ing) Object.keys(r.ing).forEach(ing=>{
+      if((state.stockPropio[ing]||0)===2) w+=2;
+      const vnom = ing.toLowerCase();
+      if(state.verdurasGanas.some(v=>vnom.includes(v.toLowerCase()))) w+=2;
+    });
+    for(let i=0;i<Math.round(w);i++) weighted.push(r);
   });
-  if(!weighted.length)return pool[Math.floor(Math.random()*pool.length)];
   return weighted[Math.floor(Math.random()*weighted.length)];
 }
 
 function generarMenu(){
-  const usedA=[],usedC=[];
+  const usedA=[], usedC=[];
   const menu=[];
   DIAS.forEach(dia=>{
-    const pa=getEligible("almuerzo",usedA);
-    const pc=getEligible("cena",usedC);
-    const a=weightedPick(pa.length?pa:getEligible("almuerzo"));
-    const c=weightedPick(pc.length?pc:getEligible("cena"));
-    usedA.push(a.id);usedC.push(c.id);
-    menu.push({dia,almuerzo_id:a.id,cena_id:c.id});
+    const pa = getEligible("almuerzo",usedA);
+    const pc = getEligible("cena",usedC);
+    const poolA = pa.length ? pa : getEligible("almuerzo");
+    const poolC = pc.length ? pc : getEligible("cena");
+    const a = weightedPick(poolA);
+    const c = weightedPick(poolC);
+    if(a) usedA.push(a.id);
+    if(c) usedC.push(c.id);
+    menu.push({dia, almuerzo_id:a?.id, cena_id:c?.id});
   });
-  state.menu=menu;
-  state.ticks={};
-  state.comprasChecked=[];
-  state.prepChecked=[];
-  state.semanaGenerada=getLunes();
-  state.flujoStep=3;
-  menu.forEach(d=>{state.historial.push(d.almuerzo_id,d.cena_id);});
-  if(state.historial.length>56)state.historial=state.historial.slice(-56);
+  state.menu = menu;
+  state.ticks = {};
+  state.comprasChecked = [];
+  state.prepChecked = [];
+  state.semanaTs = getLunes();
+  state.wizard = 3;
+  // guardar en historial
+  menu.forEach(d=>{ if(d.almuerzo_id) state.historial.push(d.almuerzo_id); if(d.cena_id) state.historial.push(d.cena_id); });
+  if(state.historial.length>56) state.historial=state.historial.slice(-56);
   save();
 }
 
-// ══════════════════════════════════════════════
-// HOY PAGE
-// ══════════════════════════════════════════════
+// ═══════════ HOY ═══════════
 function renderHoy(){
-  const el=document.getElementById('page-hoy');
+  const el = document.getElementById('page-hoy');
 
-  // Sin menú → flujo de arranque
-  if(state.flujoStep===0||!state.menu.length){
-    renderFlujoArranque(el);
+  // Si no hay menú o wizard no completado → mostrar wizard
+  if(state.wizard < 3 || !state.menu.length){
+    renderWizard(el);
     return;
   }
 
-  // Alerta de semana nueva
-  const lunes=getLunes();
-  const esNuevaSemana=state.semanaGenerada!==lunes;
-  const esLunes=new Date().getDay()===1;
+  const lunes = getLunes();
+  const esNuevaSemana = state.semanaTs !== lunes;
+  const esLunes = new Date().getDay()===1;
+  const dayIdx = new Date().getDay()===0?6:new Date().getDay()-1;
+  const diaMenu = state.menu[Math.min(dayIdx,6)];
+  const a = diaMenu ? RECETAS.find(r=>r.id===diaMenu.almuerzo_id) : null;
+  const c = diaMenu ? RECETAS.find(r=>r.id===diaMenu.cena_id) : null;
+  const tickA = state.ticks[`${dayIdx}_almuerzo`]||false;
+  const tickC = state.ticks[`${dayIdx}_cena`]||false;
+  const ambos = tickA&&tickC;
+  const fecha = new Date().toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'});
 
-  // Día de hoy
-  const dayIdx=Math.min(new Date().getDay()===0?6:new Date().getDay()-1,6);
-  const diaMenu=state.menu[dayIdx];
-  if(!diaMenu){el.innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;">Sin datos para hoy.</p>';return;}
-
-  const a=RECETAS.find(r=>r.id===diaMenu.almuerzo_id);
-  const c=RECETAS.find(r=>r.id===diaMenu.cena_id);
-  const tickA=state.ticks[`${dayIdx}_almuerzo`]||false;
-  const tickC=state.ticks[`${dayIdx}_cena`]||false;
-  const ambos=tickA&&tickC;
-  const fecha=new Date().toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'});
-
-  let html=`<div class="page-header">
-    <div class="page-title">Menú de Vicky ✦</div>
-    <div class="page-sub">${fecha}</div>
-  </div>`;
+  let html = `<div class="page-title">Menú de Vicky ✦</div><div class="page-sub">${fecha}</div>`;
 
   if(esNuevaSemana){
-    html+=`<div style="background:rgba(255,229,102,0.1);border:1px solid rgba(255,229,102,0.4);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-size:13px;color:var(--yellow);">${esLunes?'¡Es lunes! Hora de planificar la semana':'Menú de la semana pasada'}</span>
-      <button onclick="pedirNuevoMenu()" style="background:var(--yellow);color:#1A0A2E;border:none;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:500;cursor:pointer;">Renovar</button>
+    html+=`<div class="alert-banner">
+      <span class="alert-txt">${esLunes?'¡Es lunes! Hora de planificar 🗓':'Menú de la semana pasada'}</span>
+      <button class="alert-btn" onclick="pedirNuevaSemana()">Renovar</button>
     </div>`;
   }
 
   if(ambos){
-    html+=`<div class="complete-msg">
+    html+=`<div class="complete-card">
       <div class="complete-emoji">🎉</div>
       <div class="complete-title">¡Día completo!</div>
       <div class="complete-sub">Comiste todo lo de hoy</div>
     </div>`;
   }
 
-  if(a) html+=mealBigHTML(a,dayIdx,'almuerzo',tickA);
-  if(c) html+=mealBigHTML(c,dayIdx,'cena',tickC);
+  if(a) html += mealBigHTML(a,dayIdx,'almuerzo',tickA);
+  if(c) html += mealBigHTML(c,dayIdx,'cena',tickC);
 
-  el.innerHTML=html;
+  el.innerHTML = html;
 }
 
 function mealBigHTML(r,dayIdx,tipo,ticked){
-  const hora=tipo==='almuerzo'?'12:30 – 14:00':'20:00 – 21:00';
-  const icon=tipo==='almuerzo'?'🍽':'🌙';
   const isFav=state.favoritos.includes(r.id);
   const isMala=state.malas.includes(r.id);
+  const icon=tipo==='almuerzo'?'🍽':'🌙';
+  const hora=tipo==='almuerzo'?'12:30 – 14:00':'20:00 – 21:00';
   return `<div class="meal-big${ticked?' done':''}">
     <div class="meal-big-head">
-      <div>
-        <div class="meal-big-tipo">${icon} ${tipo==='almuerzo'?'Almuerzo':'Cena'}</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.6);">${hora}</div>
-      </div>
-      <span style="font-size:11px;background:rgba(107,255,184,0.2);color:var(--green);padding:2px 8px;border-radius:20px;">~${r.prot}g prot</span>
+      <div><div class="meal-big-tipo">${icon} ${tipo==='almuerzo'?'Almuerzo':'Cena'}</div><div class="meal-big-hora">${hora}</div></div>
+      <span class="prot-badge">~${r.prot}g prot</span>
     </div>
     <div class="meal-big-body">
-      <div class="meal-big-nombre">${r.nombre}</div>
+      <div class="meal-big-nombre">${r.nombre}${r.guarnicion?` · <span style="color:var(--muted);font-size:13px;">${r.guarnicion}</span>`:''}</div>
       <div class="meal-big-prep">${r.prep||''}</div>
-      <div class="meal-big-actions">
-        <div class="meal-big-btns">
+      <div class="meal-big-footer">
+        <div class="meal-btns">
           <button class="action-btn" onclick="openSwap(${dayIdx},'${tipo}')">cambiar</button>
-          ${r.mod?`<button class="action-btn yellow" onclick="openMod(${r.id},${dayIdx},'${tipo}')">modificar</button>`:''}
+          ${r.mod?`<button class="action-btn y" onclick="openMod(${r.id},${dayIdx},'${tipo}')">modificar</button>`:''}
         </div>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <div class="react-btns">
-            <button class="react-btn" onclick="toggleFav(${r.id})">${isFav?'❤️':'🤍'}</button>
-            <button class="react-btn" title="${isMala?'Marcar como ok':'No me gustó'}" onclick="toggleMala(${r.id})">${isMala?'👎':'·'}</button>
-          </div>
-          <button class="tilde-btn${ticked?' ticked':''}" onclick="toggleTick(${dayIdx},'${tipo}')">${ticked?'✓':''}</button>
+        <div class="react-row">
+          <button class="react-btn" onclick="toggleFav(${r.id})">${isFav?'❤️':'🤍'}</button>
+          <button class="react-btn" title="${isMala?'Restaurar':'No me gustó'}" onclick="toggleMala(${r.id})">${isMala?'👎':'🙁'}</button>
+          <button class="tick-btn${ticked?' ticked':''}" onclick="toggleTick(${dayIdx},'${tipo}')">${ticked?'✓':''}</button>
         </div>
       </div>
     </div>
   </div>`;
 }
 
-// ══════════════════════════════════════════════
-// FLUJO ARRANQUE
-// ══════════════════════════════════════════════
-function renderFlujoArranque(el){
-  const step=state.flujoStep;
-  const steps=['Ganas','Stock','Generar'];
-  const stepHTML=`<div class="step-indicator">
-    ${steps.map((s,i)=>`
-      <div class="step">
-        <div class="step-dot ${i<step?'done':i===step?'active':''}">${i<step?'✓':i+1}</div>
-        <span class="step-label ${i===step?'active':''}">${s}</span>
-      </div>
-      ${i<steps.length-1?'<div class="step-sep"></div>':''}`).join('')}
+function toggleTick(dayIdx,tipo){
+  const k=`${dayIdx}_${tipo}`;
+  state.ticks[k]=!state.ticks[k];
+  save(); renderHoy();
+}
+function toggleFav(id){
+  const i=state.favoritos.indexOf(id);
+  if(i===-1){state.favoritos.push(id);showToast("Favorito ❤️");}
+  else{state.favoritos.splice(i,1);showToast("Quitado de favoritos");}
+  save(); renderHoy();
+}
+function toggleMala(id){
+  const i=state.malas.indexOf(id);
+  if(i===-1){state.malas.push(id);showToast("👎 No aparecerá más");}
+  else{state.malas.splice(i,1);showToast("Restaurado ✓");}
+  save(); renderHoy();
+}
+
+// ═══════════ WIZARD ═══════════
+function renderWizard(el){
+  const step = state.wizard; // 0=verduras, 1=stock, 2=generar
+  const s = state.currentSeason;
+  const sLabel={invierno:"invierno ❄️",primavera:"primavera 🌸",verano:"verano ☀️",otoño:"otoño 🍂"}[s];
+
+  let html=`<div class="page-title">Menú de Vicky ✦</div>
+  <div class="page-sub">Armemos la semana</div>
+  <div class="wizard-steps">
+    <div class="wstep ${step>0?'done':step===0?'active':''}"></div>
+    <div class="wstep ${step>1?'done':step===1?'active':''}"></div>
+    <div class="wstep ${step>2?'done':step===2?'active':''}"></div>
   </div>`;
 
-  let html=`<div class="page-header">
-    <div class="page-title">Menú de Vicky ✦</div>
-    <div class="page-sub">Armemos la semana juntas</div>
-  </div>${stepHTML}`;
-
   if(step===0){
-    // PASO 1 — QUÉ TENÉS GANAS
-    const s=state.currentSeason;
-    const verduras=VERDURAS_ESTACION[s]||[];
-    const sLabel={invierno:"invierno ❄️",primavera:"primavera 🌸",verano:"verano ☀️",otoño:"otoño 🍂"}[s];
+    // PASO 1: Verduras con ganas
+    const verduras = VERDURAS_ESTACION[s]||[];
     html+=`<div style="font-family:'Caveat',cursive;font-size:1.2rem;color:var(--violet-l);margin-bottom:.25rem;">¿Qué verduras tenés ganas esta semana?</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Verduras de ${sLabel} · tocá para marcar</div>
-    <div class="verd-grid">`;
+    <div style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Verduras de ${sLabel} — tocá para marcar, van a aparecer más en el menú</div>`;
     verduras.forEach(v=>{
       const sel=state.verdurasGanas.includes(v.nombre);
       html+=`<div class="verd-card${sel?' sel':''}" onclick="toggleGanas('${v.nombre}')">
         <span class="verd-emoji">${v.emoji}</span>
-        <div class="verd-info">
+        <div style="flex:1;">
           <div class="verd-nombre">${v.nombre}</div>
           <div class="verd-usos">${v.usos}</div>
           <div class="verd-consejo">💡 ${v.consejo}</div>
@@ -601,29 +616,27 @@ function renderFlujoArranque(el){
         <span class="verd-check">${sel?'⭐':''}</span>
       </div>`;
     });
-    html+=`</div>
-    <div style="height:1rem;"></div>
-    <button class="primary-btn" onclick="avanzarPaso(1)">Siguiente → ¿Qué ya tenés en casa?</button>
-    ${state.verdurasGanas.length?`<div class="note">Marcaste: <strong>${state.verdurasGanas.join(', ')}</strong></div>`:''}`;
+    html+=`<button class="btn-primary" onclick="setWizard(1)">Siguiente → ¿Qué ya tenés en casa?</button>`;
+    if(state.verdurasGanas.length) html+=`<div class="note">Marcaste: <strong>${state.verdurasGanas.join(', ')}</strong></div>`;
 
   } else if(step===1){
-    // PASO 2 — QUÉ YA TENÉS
-    const allIngs=[...new Set(RECETAS.flatMap(r=>r.ing?Object.keys(r.ing):[]))].sort();
+    // PASO 2: Stock en casa
+    const allIngs = [...new Set(RECETAS.flatMap(r=>r.ing?Object.keys(r.ing):[]))].sort();
     html+=`<div style="font-family:'Caveat',cursive;font-size:1.2rem;color:var(--violet-l);margin-bottom:.25rem;">¿Qué ya tenés en casa?</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tocá para ciclar: ⚪ no tengo → ✓ tengo → 🔥 tengo mucho</div>
-    <div class="stock-grid">
-      ${allIngs.map(ing=>{
-        const lvl=state.stockPropio[ing]||0;
-        const cls=lvl===2?'mucho':lvl===1?'tengo':'';
-        const icon=lvl===2?'🔥':lvl===1?'✓':'⚪';
-        return `<div class="stock-tag ${cls}" onclick="cycleStock('${ing}')"><span class="stock-icon">${icon}</span>${ing}</div>`;
-      }).join('')}
-    </div>
-    <button class="primary-btn" onclick="avanzarPaso(2)" style="margin-top:1rem;">Siguiente → Generar menú</button>
-    <button class="secondary-btn" onclick="avanzarPaso(0)">← Volver</button>`;
+    <div style="font-size:13px;color:var(--muted);margin-bottom:1rem;">⚪ no tengo &nbsp;→&nbsp; ✓ tengo &nbsp;→&nbsp; 🔥 tengo mucho</div>
+    <div class="stock-grid">`;
+    allIngs.forEach(ing=>{
+      const lvl=state.stockPropio[ing]||0;
+      const cls=lvl===2?'mucho':lvl===1?'tengo':'';
+      const icon=lvl===2?'🔥':lvl===1?'✓':'⚪';
+      html+=`<div class="stock-tag ${cls}" onclick="cycleStock('${ing}')">${icon} ${ing}</div>`;
+    });
+    html+=`</div>
+    <button class="btn-primary" onclick="setWizard(2)">Siguiente → Generar menú</button>
+    <button class="btn-secondary" onclick="setWizard(0)">← Volver a verduras</button>`;
 
   } else if(step===2){
-    // PASO 3 — GENERAR
+    // PASO 3: Generar
     const conGanas=state.verdurasGanas.length;
     const conStock=Object.values(state.stockPropio).filter(v=>v>0).length;
     html+=`<div style="font-family:'Caveat',cursive;font-size:1.2rem;color:var(--violet-l);margin-bottom:1rem;">¡Todo listo para generar!</div>
@@ -632,92 +645,86 @@ function renderFlujoArranque(el){
       <div class="stat"><div class="stat-num">${conStock}</div><div class="stat-label">ingredientes en casa</div></div>
       <div class="stat"><div class="stat-num">${state.favoritos.length}</div><div class="stat-label">favoritos</div></div>
     </div>
-    ${conGanas?`<div class="note">Con ganas de: <strong>${state.verdurasGanas.join(', ')}</strong></div>`:''}
-    <button class="primary-btn" onclick="doGenerarMenu()">✦ Generar menú de la semana</button>
-    <button class="secondary-btn" onclick="avanzarPaso(1)">← Volver al stock</button>`;
+    ${conGanas?`<div class="note" style="margin-bottom:1rem;">Con ganas de: <strong>${state.verdurasGanas.join(', ')}</strong></div>`:''}
+    <button class="btn-primary" onclick="doGenerar()">✦ Generar menú de la semana</button>
+    <button class="btn-secondary" onclick="setWizard(1)">← Volver al stock</button>`;
   }
 
-  el.innerHTML=html;
+  el.innerHTML = html;
 }
 
-function avanzarPaso(n){ state.flujoStep=n; save(); renderHoy(); }
+function setWizard(n){ state.wizard=n; save(); renderHoy(); }
 
 function toggleGanas(nombre){
-  const idx=state.verdurasGanas.indexOf(nombre);
-  if(idx===-1)state.verdurasGanas.push(nombre);
-  else state.verdurasGanas.splice(idx,1);
+  const i=state.verdurasGanas.indexOf(nombre);
+  if(i===-1) state.verdurasGanas.push(nombre);
+  else state.verdurasGanas.splice(i,1);
   save(); renderHoy();
 }
 
 function cycleStock(ing){
-  const cur=state.stockPropio[ing]||0;
-  state.stockPropio[ing]=(cur+1)%3;
+  state.stockPropio[ing]=((state.stockPropio[ing]||0)+1)%3;
   save(); renderHoy();
 }
 
-function doGenerarMenu(){
+function doGenerar(){
   generarMenu();
-  save();
-  renderHoy(); renderSemana(); renderCompras(); renderPrep();
-  showToast("✦ ¡Menú generado!");
+  renderHoy(); renderSemana(); renderCompras();
+  showToast("✦ ¡Menú de la semana generado!");
 }
 
-function pedirNuevoMenu(){
+// Nueva semana
+function pedirNuevaSemana(){
+  const tieneGanas=state.verdurasGanas.length>0;
+  document.getElementById('confirm-msg').textContent = tieneGanas
+    ? `Esto borra el menú actual. Tus verduras marcadas (${state.verdurasGanas.join(', ')}) quedan como punto de partida para que las revises.`
+    : 'Esto borra el menú actual y empezás el flujo de nueva semana.';
   document.getElementById('modal-confirm').classList.add('open');
 }
 
-function confirmarNuevoMenu(){
+function confirmarNuevaSemana(){
   closeModal('modal-confirm');
-  state.flujoStep=0;
-  state.verdurasGanas=[];
+  // Limpiar semana pero mantener verduras como punto de partida
   state.menu=[];
   state.ticks={};
+  state.comprasChecked=[];
+  state.prepChecked=[];
+  state.semanaTs=null;
+  state.wizard=0; // volver al paso 1 (verduras)
   save();
   renderHoy();
+  showToast("Nueva semana ✦");
 }
 
-// ══════════════════════════════════════════════
-// TICKS
-// ══════════════════════════════════════════════
-function toggleTick(dayIdx,tipo){
-  const key=`${dayIdx}_${tipo}`;
-  state.ticks[key]=!state.ticks[key];
-  save(); renderHoy();
-}
-
-// ══════════════════════════════════════════════
-// SEMANA PAGE
-// ══════════════════════════════════════════════
+// ═══════════ SEMANA ═══════════
 function renderSemana(){
   const el=document.getElementById('page-semana');
   if(!state.menu.length){
-    el.innerHTML=`<div class="page-header"><div class="page-title">Semana 📅</div></div><p style="color:var(--muted);text-align:center;margin-top:2rem;">Generá el menú primero.</p>`;
+    el.innerHTML='<div class="page-title">Semana 📅</div><p style="color:var(--muted);margin-top:1rem;font-size:14px;">Generá el menú primero.</p>';
     return;
   }
   const hoyIdx=new Date().getDay()===0?6:new Date().getDay()-1;
-  const lunes=getLunes();
-  const fechaStr=new Date(lunes).toLocaleDateString('es-AR',{day:'numeric',month:'long'});
-  let html=`<div class="page-header"><div class="page-title">Semana 📅</div><div class="page-sub">Del ${fechaStr}</div></div>`;
-
+  let html='<div class="page-title">Semana 📅</div>';
   state.menu.forEach((d,i)=>{
     const a=RECETAS.find(r=>r.id===d.almuerzo_id);
     const c=RECETAS.find(r=>r.id===d.cena_id);
-    if(!a||!c)return;
+    if(!a||!c) return;
     const esHoy=i===hoyIdx;
     html+=`<div class="semana-card">
-      <div class="semana-card-head">
-        <span class="semana-day${esHoy?' hoy':''}">${d.dia}${esHoy?' · hoy':''}</span>
+      <div class="semana-head">
+        <span class="semana-dia">${d.dia}</span>
+        ${esHoy?'<span class="semana-hoy">hoy</span>':''}
       </div>
-      ${semanaRow(a,i,'almuerzo')}
-      ${semanaRow(c,i,'cena')}
+      ${semanaRowHTML(a,i,'almuerzo')}
+      ${semanaRowHTML(c,i,'cena')}
     </div>`;
   });
   el.innerHTML=html;
 }
 
-function semanaRow(r,dayIdx,tipo){
+function semanaRowHTML(r,dayIdx,tipo){
   const isFav=state.favoritos.includes(r.id);
-  return `<div class="semana-meal">
+  return `<div class="semana-row">
     <span class="semana-tipo">${tipo==='almuerzo'?'Almuerzo':'Cena'}</span>
     <div>
       <div class="semana-nombre">${r.nombre}${isFav?' ❤️':''}</div>
@@ -730,261 +737,251 @@ function semanaRow(r,dayIdx,tipo){
   </div>`;
 }
 
-// ══════════════════════════════════════════════
-// COMPRAS PAGE
-// ══════════════════════════════════════════════
-const VERDULERIA_K=['papa','zapallo','zanahoria','cebolla','tomate','morrón','ajo','berenjena','puerro','apio','batata','lechuga','pepino','morrón'];
-const DIETETICA_K=['garbanzos','porotos','arvejas','maíz','soja texturizada','milanesa de soja','milanesa de avena','harina de maíz','fideos'];
-
-function calcCompraQty(ing,n){
-  const key=ing.toLowerCase();
-  const r=COMPRA_REAL[key]||COMPRA_REAL[ing];
-  if(!r)return null;
-  if(r.max===0)return null; // condimento seco, no calcular cantidad
-  if(r.pack===0)return null;
-  let qty=Math.min(r.per*n, r.max||999); // aplicar tope maximo
-  const packs=Math.ceil(qty/r.pack);
-  qty=packs*r.pack;
-  if(r.max)qty=Math.min(qty,r.max); // segundo control post-pack
-  if(r.unit==='kg')return qty<1?`${Math.round(qty*1000)}g`:`${qty}kg`;
-  if(r.unit==='g')return`${qty}g`;
-  if(r.unit==='docena')return`${packs} docena${packs>1?'s':''}`;
-  if(r.unit==='u')return`${Math.round(qty)} u`;
-  if(r.unit==='cabeza')return`${Math.ceil(qty)} cabeza${Math.ceil(qty)>1?'s':''}`;
-  if(r.unit==='botella')return'1 botella';
-  if(r.unit==='sobre')return null;
-  return`${qty} ${r.unit}`;
-}
-
-function buildShoppingList(){
-  if(!state.menu.length)return{};
-  // Contar cuantas veces aparece cada ingrediente en los 7 dias
-  const counts={}; // {ing: {rawQty, n (veces que aparece)}}
+// ═══════════ COMPRAS ═══════════
+function buildCompras(){
+  if(!state.menu.length) return {};
+  const counts={};
   state.menu.forEach(d=>{
     [d.almuerzo_id,d.cena_id].forEach(rid=>{
       const r=RECETAS.find(x=>x.id===rid);
-      if(!r||!r.ing)return;
+      if(!r||!r.ing) return;
       Object.entries(r.ing).forEach(([ing,qty])=>{
-        const lvl=state.stockPropio[ing]||0;
-        if(lvl>=1)return; // ya tiene en casa, no comprar
-        if(!counts[ing])counts[ing]={qty,n:1};
-        else counts[ing].n++; // mismo ingrediente en otro dia
+        // Si tiene en casa (✓ o 🔥) no agregar a compras
+        if((state.stockPropio[ing]||0)>=1) return;
+        if(!counts[ing]) counts[ing]={qty,n:1};
+        else counts[ing].n++;
       });
     });
   });
   const places={verduleria:[],dietetica:[],super_:[]};
   Object.entries(counts).forEach(([ing,data])=>{
+    const qty=formatQty(ing,data.n)||data.qty;
+    if(!qty) return; // condimento sin cantidad definida
     const lc=ing.toLowerCase();
     let bucket='super_';
-    if(VERDULERIA_K.some(v=>lc.includes(v)))bucket='verduleria';
-    else if(DIETETICA_K.some(v=>lc.includes(v)))bucket='dietetica';
-    // calcCompraQty usa data.n para calcular cantidad real de compra
-    const qty=calcCompraQty(ing,data.n)||data.qty;
-    if(!qty)return; // condimento seco, no mostrar
+    if(VERDULERIA_K.some(v=>lc.includes(v))) bucket='verduleria';
+    else if(DIETETICA_K.some(v=>lc.includes(v))) bucket='dietetica';
     places[bucket].push({ing,qty,n:data.n});
   });
-  // Ordenar cada seccion alfabeticamente
   Object.values(places).forEach(arr=>arr.sort((a,b)=>a.ing.localeCompare(b.ing)));
   return places;
 }
 
 function renderCompras(){
   const el=document.getElementById('page-compras');
-  const places=buildShoppingList();
+  const places=buildCompras();
   const total=Object.values(places).reduce((s,a)=>s+a.length,0);
   const tachados=state.comprasChecked.length;
   const labels={verduleria:'Verdulería 🥬',dietetica:'Dietética 🫙',super_:'Super / Lácteos 🧀'};
 
-  let html=`<div class="page-header"><div class="page-title">Compras 🛒</div><div class="page-sub">${tachados}/${total} tachados</div></div>`;
+  let html=`<div class="page-title">Compras 🛒</div>`;
 
   if(!total){
-    html+=`<p style="color:var(--muted);text-align:center;margin-top:2rem;font-size:14px;">Generá el menú primero para ver la lista.</p>`;
+    html+=`<p style="color:var(--muted);margin-top:1rem;font-size:14px;">Generá el menú primero para ver la lista.</p>`;
     el.innerHTML=html; return;
   }
 
-  html+=`<button class="clear-btn" onclick="clearChecks()">Limpiar tachados</button>`;
+  html+=`<div class="stat-row">
+    <div class="stat"><div class="stat-num">${total}</div><div class="stat-label">ingredientes</div></div>
+    <div class="stat"><div class="stat-num">${tachados}</div><div class="stat-label">tachados</div></div>
+    <div class="stat"><div class="stat-num">${total-tachados}</div><div class="stat-label">faltan</div></div>
+  </div>
+  <button class="btn-clear" onclick="clearChecks()">Limpiar tachados</button>`;
 
   Object.entries(places).filter(([,arr])=>arr.length>0).forEach(([k,arr])=>{
     html+=`<div class="shop-place">${labels[k]}</div><div class="shop-list">`;
     arr.forEach(({ing,qty,n})=>{
       const key=k+'__'+ing;
       const checked=state.comprasChecked.includes(key);
-      const diasLabel=n>1?` (${n}x)`:'';
       html+=`<div class="shop-item${checked?' checked':''}" onclick="toggleCheck('${key}')">
         <span class="chk">${checked?'✓':''}</span>
-        <span class="shop-text">${ing}<span style="font-size:10px;color:var(--muted2);">${diasLabel}</span></span>
+        <span class="shop-text">${ing}${n>1?`<span class="shop-n">(${n}x)</span>`:''}</span>
         <span class="shop-qty">${qty}</span>
       </div>`;
     });
-    html+=`</div><div style="height:.75rem;"></div>`;
+    html+=`</div>`;
   });
 
   if(tachados===total&&total>0){
-    html+=`<div class="shop-done-msg">
+    html+=`<div class="done-banner">
       <div style="font-size:2rem;margin-bottom:.5rem;">🛒</div>
       <div style="font-family:'Caveat',cursive;font-size:1.3rem;color:var(--green);">¡Lista completa!</div>
       <div style="font-size:13px;color:var(--muted);margin-top:.25rem;">Todo comprado, a cocinar 🎉</div>
     </div>`;
   }
-
   el.innerHTML=html;
 }
 
-function toggleCheck(key){const idx=state.comprasChecked.indexOf(key);if(idx===-1)state.comprasChecked.push(key);else state.comprasChecked.splice(idx,1);save();renderCompras();}
-function clearChecks(){state.comprasChecked=[];save();renderCompras();}
+function toggleCheck(key){
+  const i=state.comprasChecked.indexOf(key);
+  if(i===-1) state.comprasChecked.push(key);
+  else state.comprasChecked.splice(i,1);
+  save(); renderCompras();
+}
+function clearChecks(){ state.comprasChecked=[]; save(); renderCompras(); }
 
-// ══════════════════════════════════════════════
-// MÁS PAGE
-// ══════════════════════════════════════════════
+// ═══════════ MÁS ═══════════
+let masTab='prep';
+let recetasFilter='todo';
+
 function renderMas(){
   const el=document.getElementById('page-mas');
-  let html=`<div class="page-header"><div class="page-title">Más ✦</div></div>`;
-
-  // Sub-tabs
-  html+=`<div class="recipe-filters" id="mas-tabs">
-    <button class="filter-btn active" id="tab-prep" onclick="showMasTab('prep')">Prep</button>
-    <button class="filter-btn" id="tab-recetas" onclick="showMasTab('recetas')">Recetas</button>
-    <button class="filter-btn" id="tab-verduras" onclick="showMasTab('verduras')">🥦 Verduras</button>
-  </div>
-  <div id="mas-prep-content"></div>
-  <div id="mas-recetas-content" style="display:none;"></div>
-  <div id="mas-verduras-content" style="display:none;"></div>`;
-
+  let html=`<div class="page-title">Más ✦</div>
+  <div class="rfilters">
+    <button class="rfbtn${masTab==='prep'?' active':''}" onclick="setMasTab('prep')">Prep</button>
+    <button class="rfbtn${masTab==='recetas'?' active':''}" onclick="setMasTab('recetas')">Recetas</button>
+    <button class="rfbtn${masTab==='verduras'?' active':''}" onclick="setMasTab('verduras')">🥦 Verduras</button>
+    <button class="rfbtn${masTab==='semana'?' active':''}" onclick="setMasTab('semana')">🔄 Semana</button>
+  </div>`;
+  if(masTab==='prep') html+=renderPrepHTML();
+  else if(masTab==='recetas') html+=renderRecetasHTML();
+  else if(masTab==='verduras') html+=renderVerdurasHTML();
+  else html+=renderNuevaSemanaHTML();
   el.innerHTML=html;
-  renderPrepInner();
-  renderRecetasInner();
-  renderVerdurasInner();
 }
 
-function showMasTab(tab){
-  document.getElementById('mas-prep-content').style.display=tab==='prep'?'block':'none';
-  document.getElementById('mas-recetas-content').style.display=tab==='recetas'?'block':'none';
-  document.getElementById('mas-verduras-content').style.display=tab==='verduras'?'block':'none';
-  document.querySelectorAll('#mas-tabs .filter-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
-}
+function setMasTab(t){ masTab=t; renderMas(); }
 
-function renderPrepInner(){
-  const el=document.getElementById('mas-prep-content');
-  if(!el)return;
-  if(!state.menu.length){el.innerHTML='<p style="color:var(--muted);font-size:13px;text-align:center;margin-top:1rem;">Generá el menú primero.</p>';return;}
-
+function renderPrepHTML(){
+  if(!state.menu.length) return '<p style="color:var(--muted);font-size:13px;text-align:center;margin-top:1rem;">Generá el menú primero.</p>';
   const bases=new Set();
-  state.menu.forEach(d=>{[d.almuerzo_id,d.cena_id].forEach(rid=>{const r=RECETAS.find(x=>x.id===rid);if(r)bases.add(r.base);});});
-
+  state.menu.forEach(d=>{ [d.almuerzo_id,d.cena_id].forEach(rid=>{ const r=RECETAS.find(x=>x.id===rid); if(r)bases.add(r.base); }); });
   const pasos=[];
-  const add=(texto,sec,timer=null)=>pasos.push({texto,sec,timer,key:`prep_${pasos.length}`});
-  if(bases.has('garbanzos'))add("Remojar garbanzos en agua fría",'sabado');
-  if(bases.has('porotos'))add("Remojar porotos en agua fría",'sabado');
-  if(bases.has('arvejas'))add("Remojar arvejas en agua fría",'sabado');
-  if(bases.has('maíz'))add("Remojar maíz pisado blanco — arrancar primero el domingo",'sabado');
-  if(bases.has('maíz'))add("Arrancar maíz pisado primero — 2 hs a fuego suave",'domingo',{min:120,label:"Maíz pisado"});
-  if(['garbanzos','porotos','arvejas'].some(b=>bases.has(b)))add("Cocinar legumbres por separado · guardar en tuppers",'domingo');
-  if(bases.has('pastel'))add("Preparar base del pastel — puré + relleno",'domingo');
-  if(bases.has('pastel'))add("Gratinar el pastel el día que se come",'domingo',{min:20,label:"Gratinar"});
-  add("Dejar 2–3 huevos duros en heladera",'domingo',{min:12,label:"Huevos duros"});
-  if(bases.has('milanesa'))add("Sacar milanesas del freezer la noche anterior",'miercoles');
-  add("Revisar tuppers · reabastecer si falta",'miercoles');
-
-  const sections=[{key:'sabado',titulo:'Sábado a la noche',sub:'Remojo'},{key:'domingo',titulo:'Domingo',sub:'Cocción bulk · 2–3 hs'},{key:'miercoles',titulo:'Miércoles',sub:'Recarga · 15 min'}];
+  const ap=(texto,sec,timer=null)=>pasos.push({texto,sec,timer,key:`p_${pasos.length}`});
+  if(bases.has('garbanzos')) ap("Remojar garbanzos en agua fría",'sab');
+  if(bases.has('porotos')) ap("Remojar porotos en agua fría",'sab');
+  if(bases.has('arvejas')) ap("Remojar arvejas en agua fría",'sab');
+  if(bases.has('maíz')) ap("Remojar maíz pisado — arrancar primero el domingo",'sab');
+  if(bases.has('maíz')) ap("Cocinar maíz pisado primero — 2 hs a fuego suave",'dom',{min:120,label:"Maíz pisado"});
+  if(bases.has('garbanzos')||bases.has('porotos')||bases.has('arvejas')) ap("Cocinar legumbres por separado · guardar en tuppers",'dom');
+  if(bases.has('pastel')) ap("Preparar puré de papa y relleno del pastel",'dom');
+  ap("Dejar 2–3 huevos duros cocidos en heladera",'dom',{min:12,label:"Huevos duros"});
+  if(bases.has('milanesa')) ap("Sacar milanesas del freezer la noche anterior",'mier');
+  ap("Revisar tuppers · reabastecer lo que falta",'mier');
+  const secs=[{k:'sab',t:'Sábado a la noche',s:'Remojo'},{k:'dom',t:'Domingo',s:'Cocción bulk · 2–3 hs'},{k:'mier',t:'Miércoles',s:'Recarga · 15 min'}];
   let html='';
-  sections.forEach(sec=>{
-    const items=pasos.filter(p=>p.sec===sec.key);
-    if(!items.length)return;
-    html+=`<div class="prep-block"><div class="prep-head"><div class="prep-head-title">${sec.titulo}</div><div class="prep-head-sub">${sec.sub}</div></div>`;
+  secs.forEach(sec=>{
+    const items=pasos.filter(p=>p.sec===sec.k);
+    if(!items.length) return;
+    html+=`<div class="prep-block"><div class="prep-head"><div class="prep-head-title">${sec.t}</div><div class="prep-head-sub">${sec.s}</div></div>`;
     items.forEach(p=>{
       const done=state.prepChecked.includes(p.key);
       html+=`<div class="prep-item${done?' done':''}" onclick="togglePrep('${p.key}')">
-        <span class="prep-check">${done?'✓':''}</span>
+        <span class="prep-chk">${done?'✓':''}</span>
         <span class="prep-text">${p.texto}</span>
         ${p.timer?`<button class="timer-btn" onclick="event.stopPropagation();openTimer(${p.timer.min},'${p.timer.label}')">⏱ ${p.timer.min>=60?(p.timer.min/60)+'h':p.timer.min+'min'}</button>`:''}
       </div>`;
     });
     html+=`</div>`;
   });
-  html+=`<div class="note"><strong>Tip:</strong> las milanesas van directo del super al freezer. Sacarlas la noche anterior.</div>`;
-  el.innerHTML=html;
+  html+=`<div class="note"><strong>Tip:</strong> las milanesas van directo al freezer cuando llegan de la dietética. Sacalas la noche anterior.</div>`;
+  return html;
 }
 
-function togglePrep(key){const idx=state.prepChecked.indexOf(key);if(idx===-1)state.prepChecked.push(key);else state.prepChecked.splice(idx,1);save();renderPrepInner();}
+function togglePrep(key){
+  const i=state.prepChecked.indexOf(key);
+  if(i===-1) state.prepChecked.push(key);
+  else state.prepChecked.splice(i,1);
+  save(); renderMas();
+}
 
-let activeFilter='todo';
-function renderRecetasInner(){
-  const el=document.getElementById('mas-recetas-content');
-  if(!el)return;
+function renderRecetasHTML(){
   const tags=['todo','favoritas','malas','guiso','milanesa','polenta','sopa','pastel','verduras','huevos'];
-  let html=`<div class="recipe-filters" style="margin-bottom:1rem;">
-    ${tags.map(t=>`<button class="filter-btn${activeFilter===t?' active':''}" onclick="setFilter('${t}')">${t}</button>`).join('')}
+  let html=`<div class="rfilters">
+    ${tags.map(t=>`<button class="rfbtn${recetasFilter===t?' active':''}" onclick="setRecetasFilter('${t}')">${t}</button>`).join('')}
   </div>`;
   let pool=RECETAS;
-  if(activeFilter==='favoritas')pool=pool.filter(r=>state.favoritos.includes(r.id));
-  else if(activeFilter==='malas')pool=pool.filter(r=>state.malas.includes(r.id));
-  else if(activeFilter!=='todo')pool=pool.filter(r=>r.tags&&r.tags.includes(activeFilter)||r.base===activeFilter);
-  html+=pool.map(r=>{
+  if(recetasFilter==='favoritas') pool=pool.filter(r=>state.favoritos.includes(r.id));
+  else if(recetasFilter==='malas') pool=pool.filter(r=>state.malas.includes(r.id));
+  else if(recetasFilter!=='todo') pool=pool.filter(r=>r.tags&&r.tags.includes(recetasFilter)||r.base===recetasFilter);
+  pool.forEach(r=>{
     const isFav=state.favoritos.includes(r.id);
     const isMala=state.malas.includes(r.id);
-    return `<div class="recipe-card${isFav?' favorita':''}${isMala?' mala':''}">
+    html+=`<div class="recipe-card${isFav?' fav':''}${isMala?' mala':''}">
       <div style="flex:1;">
         <div class="recipe-name">${r.nombre}${isMala?' 👎':''}</div>
         <div class="recipe-meta">${r.tipo} · ~${r.prot}g prot · ${r.tiempo} min</div>
-        <div class="recipe-tags">${(r.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div>${(r.tags||[]).map(t=>`<span class="rtag">${t}</span>`).join('')}</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
         <button class="react-btn" style="font-size:20px;" onclick="toggleFavR(${r.id})">${isFav?'❤️':'🤍'}</button>
-        <button class="react-btn" style="font-size:16px;" title="${isMala?'Restaurar':'No me gustó'}" onclick="toggleMalaR(${r.id})">${isMala?'👎':'·'}</button>
+        <button class="react-btn" style="font-size:16px;" onclick="toggleMalaR(${r.id})">${isMala?'👎':'🙁'}</button>
       </div>
     </div>`;
-  }).join('');
-  el.innerHTML=html;
+  });
+  return html;
 }
-function setFilter(f){activeFilter=f;renderRecetasInner();}
 
-// ══════════════════════════════════════════════
-// FAVORITOS / MALAS
-// ══════════════════════════════════════════════
-function toggleFav(id){const idx=state.favoritos.indexOf(id);if(idx===-1){state.favoritos.push(id);showToast("Favorito ❤️");}else{state.favoritos.splice(idx,1);showToast("Quitado");}save();renderHoy();}
-function toggleMala(id){const idx=state.malas.indexOf(id);if(idx===-1){state.malas.push(id);showToast("👎 No aparecerá más");}else{state.malas.splice(idx,1);showToast("Restaurado ✓");}save();renderHoy();}
-function toggleFavR(id){const idx=state.favoritos.indexOf(id);if(idx===-1){state.favoritos.push(id);showToast("Favorito ❤️");}else{state.favoritos.splice(idx,1);showToast("Quitado");}save();renderRecetasInner();}
-function toggleMalaR(id){const idx=state.malas.indexOf(id);if(idx===-1){state.malas.push(id);showToast("👎 No aparecerá más");}else{state.malas.splice(idx,1);showToast("Restaurado ✓");}save();renderRecetasInner();}
+function setRecetasFilter(f){ recetasFilter=f; renderMas(); }
+function toggleFavR(id){ const i=state.favoritos.indexOf(id); if(i===-1){state.favoritos.push(id);showToast("Favorito ❤️");}else{state.favoritos.splice(i,1);showToast("Quitado");} save(); renderMas(); }
+function toggleMalaR(id){ const i=state.malas.indexOf(id); if(i===-1){state.malas.push(id);showToast("👎 No aparecerá más");}else{state.malas.splice(i,1);showToast("Restaurado ✓");} save(); renderMas(); }
 
-// ══════════════════════════════════════════════
-// SWAP
-// ══════════════════════════════════════════════
+function renderNuevaSemanaHTML(){
+  const semanaStr = state.semanaTs
+    ? new Date(state.semanaTs).toLocaleDateString('es-AR',{day:'numeric',month:'long'})
+    : 'ninguna';
+  return `<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:1rem;">
+    <div style="font-family:'Caveat',cursive;font-size:1.1rem;color:var(--violet-l);margin-bottom:.5rem;">Semana actual</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Menú generado el ${semanaStr} · ${state.menu.length?'7 días planificados':'Sin menú todavía'}</div>
+    <button class="btn-danger" onclick="pedirNuevaSemana()">🔄 Empezar nueva semana</button>
+  </div>`;
+}
+
+function renderVerdurasHTML(){
+  const s=state.currentSeason;
+  const verduras=VERDURAS_ESTACION[s]||[];
+  const sLabel={invierno:"Invierno ❄️",primavera:"Primavera 🌸",verano:"Verano ☀️",otoño:"Otoño 🍂"}[s];
+  let html=`<div style="font-size:13px;color:var(--muted);margin:.5rem 0 1rem;">${sLabel} · tocá para marcar las que te interesan</div>`;
+  verduras.forEach(v=>{
+    const sel=state.verdurasGanas.includes(v.nombre);
+    html+=`<div class="verd-card${sel?' sel':''}" onclick="toggleGanasR('${v.nombre}')">
+      <span class="verd-emoji">${v.emoji}</span>
+      <div style="flex:1;">
+        <div class="verd-nombre">${v.nombre} ${sel?'⭐':''}</div>
+        <div class="verd-usos">${v.usos}</div>
+        <div class="verd-consejo">💡 ${v.consejo}</div>
+      </div>
+    </div>`;
+  });
+  if(state.verdurasGanas.length) html+=`<div class="note"><strong>Marcadas:</strong> ${state.verdurasGanas.join(', ')} — aparecerán más en el próximo menú.</div>`;
+  return html;
+}
+
+function toggleGanasR(nombre){ const i=state.verdurasGanas.indexOf(nombre); if(i===-1){state.verdurasGanas.push(nombre);showToast(`⭐ ${nombre}`);}else{state.verdurasGanas.splice(i,1);showToast("Desmarcada");} save(); renderMas(); }
+
+// ═══════════ SWAP ═══════════
 let swapTarget=null;
 function openSwap(dayIdx,tipo){
   swapTarget={dayIdx,tipo};
   const used=state.menu.map(d=>tipo==='almuerzo'?d.almuerzo_id:d.cena_id);
   const opts=getEligible(tipo,used);
-  const favs=state.favoritos;
-  opts.sort((a,b)=>(favs.includes(b.id)?1:0)-(favs.includes(a.id)?1:0));
+  opts.sort((a,b)=>(state.favoritos.includes(b.id)?1:0)-(state.favoritos.includes(a.id)?1:0));
   document.getElementById('modal-swap-list').innerHTML=opts.slice(0,20).map(r=>`
     <div class="modal-item" onclick="doSwap(${r.id})">
-      <div class="modal-item-name">${r.nombre}${favs.includes(r.id)?' ❤️':''}</div>
+      <div class="modal-item-name">${r.nombre}${state.favoritos.includes(r.id)?' ❤️':''}</div>
       <div class="modal-item-sub">~${r.prot}g prot · ${r.prep||''}</div>
     </div>`).join('');
   document.getElementById('modal-swap').classList.add('open');
 }
 function doSwap(id){
-  if(!swapTarget)return;
+  if(!swapTarget) return;
   const{dayIdx,tipo}=swapTarget;
-  if(tipo==='almuerzo')state.menu[dayIdx].almuerzo_id=id;
+  if(tipo==='almuerzo') state.menu[dayIdx].almuerzo_id=id;
   else state.menu[dayIdx].cena_id=id;
-  save();closeModal('modal-swap');renderHoy();renderSemana();renderCompras();
-  showToast("Plato cambiado");
+  save(); closeModal('modal-swap'); renderHoy(); renderSemana(); renderCompras();
+  showToast("Plato cambiado ✓");
 }
 
-// ══════════════════════════════════════════════
-// MODIFICAR
-// ══════════════════════════════════════════════
-let modState={recetaId:null,dayIdx:null,tipo:null};
-function openMod(recetaId,dayIdx,tipo){
-  modState={recetaId,dayIdx,tipo};
-  const r=RECETAS.find(x=>x.id===recetaId);
-  if(!r||!r.mod)return;
+// ═══════════ MODIFICAR ═══════════
+let modState={rid:null,dayIdx:null,tipo:null,modKey:null};
+function openMod(rid,dayIdx,tipo){
+  modState={rid,dayIdx,tipo,modKey:null};
+  const r=RECETAS.find(x=>x.id===rid);
+  if(!r||!r.mod) return;
   document.getElementById('mod-title').textContent='Modificar · '+r.nombre.split(' con ')[0];
   document.getElementById('mod-ing-list').style.display='block';
   document.getElementById('mod-opc-wrap').style.display='none';
-  document.getElementById('mod-cancel').style.display='block';
+  document.getElementById('mod-cancel-btn').style.display='block';
   const labels={legumbre:'🫘 Legumbre',verdura:'🥦 Verdura',condimento:'🧂 Condimento',guarnicion:'🍽 Guarnición',queso:'🧀 Queso',salsa:'🍅 Salsa',fideo:'🍝 Fideo',base:'🥣 Base',cremoso:'🥛 Cremoso',relleno:'🥘 Relleno'};
   document.getElementById('mod-ing-list').innerHTML=
     '<div style="font-size:13px;color:var(--muted);margin-bottom:10px;">¿Qué querés cambiar?</div>'+
@@ -996,109 +993,88 @@ function openMod(recetaId,dayIdx,tipo){
   document.getElementById('modal-mod').classList.add('open');
 }
 function openModOpc(key){
-  const r=RECETAS.find(x=>x.id===modState.recetaId);
-  if(!r||!r.mod[key])return;
+  const r=RECETAS.find(x=>x.id===modState.rid);
+  if(!r||!r.mod[key]) return;
+  modState.modKey=key;
   document.getElementById('mod-ing-list').style.display='none';
   document.getElementById('mod-opc-wrap').style.display='block';
-  document.getElementById('mod-cancel').style.display='none';
+  document.getElementById('mod-cancel-btn').style.display='none';
   const labels={legumbre:'¿Qué legumbre?',verdura:'¿Qué verdura?',condimento:'¿Qué condimento?',guarnicion:'¿Con qué guarnición?',queso:'¿Qué queso?',salsa:'¿Qué salsa?',fideo:'¿Qué fideo?',base:'¿Qué base?',cremoso:'¿Qué textura?',relleno:'¿Qué relleno?'};
   document.getElementById('mod-opc-label').textContent=labels[key]||key;
   document.getElementById('mod-opc-list').innerHTML=r.mod[key].map(o=>`
-    <div class="modal-item" onclick="aplicarMod('${o}','${key}')">
+    <div class="modal-item" onclick="aplicarMod('${o.replace(/'/g,"\\'")}')">
       <div class="modal-item-name">${o}</div>
     </div>`).join('');
 }
-function backModStep(){
+function backMod(){
+  modState.modKey=null;
   document.getElementById('mod-ing-list').style.display='block';
   document.getElementById('mod-opc-wrap').style.display='none';
-  document.getElementById('mod-cancel').style.display='block';
+  document.getElementById('mod-cancel-btn').style.display='block';
 }
-function aplicarMod(valor,key){
-  const{dayIdx,tipo}=modState;
-  const rid=tipo==='almuerzo'?state.menu[dayIdx].almuerzo_id:state.menu[dayIdx].cena_id;
-  const r=RECETAS.find(x=>x.id===rid);
-  if(r&&key==='guarnicion')r.guarnicion=valor;
-  closeModal('modal-mod');save();renderHoy();renderSemana();
-  showToast(`✓ Cambiado a: ${valor}`);
-}
-
-// ══════════════════════════════════════════════
-// TIMER
-// ══════════════════════════════════════════════
-let timerInterval=null,timerEnd=null,timerTotal=0;
-function openTimer(min,label){timerTotal=min*60;document.getElementById('timer-title').textContent='⏱ '+label;updateTimerDisplay(timerTotal);document.getElementById('timer-label').textContent='listo para iniciar';if(timerInterval){clearInterval(timerInterval);timerInterval=null;}document.getElementById('modal-timer').classList.add('open');}
-function startTimer(){if(timerInterval)return;timerEnd=Date.now()+(timerTotal*1000);timerInterval=setInterval(()=>{const left=Math.max(0,Math.round((timerEnd-Date.now())/1000));updateTimerDisplay(left);if(left===0){clearInterval(timerInterval);timerInterval=null;document.getElementById('timer-label').textContent='¡Listo! ✓';showToast("¡Tiempo!");}else document.getElementById('timer-label').textContent='cocinando...';},1000);}
-function resetTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}updateTimerDisplay(timerTotal);document.getElementById('timer-label').textContent='listo para iniciar';}
-function updateTimerDisplay(secs){const h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60),s=secs%60;document.getElementById('timer-clock').textContent=h>0?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
-
-// ══════════════════════════════════════════════
-// VERDURAS INNER (en tab Mas)
-// ══════════════════════════════════════════════
-function renderVerdurasInner(){
-  const el=document.getElementById('mas-verduras-content');
-  if(!el)return;
-  const s=state.currentSeason;
-  const verduras=VERDURAS_ESTACION[s]||[];
-  const sLabel={invierno:"Invierno ❄️",primavera:"Primavera 🌸",verano:"Verano ☀️",otoño:"Otoño 🍂"}[s];
-
-  let html=`<div style="font-size:13px;color:var(--muted);margin-bottom:1rem;margin-top:.5rem;">
-    ${sLabel} · tocá para marcar las que te interesan ⭐
-  </div>`;
-
-  verduras.forEach(v=>{
-    const sel=(state.verdurasGanas||[]).includes(v.nombre);
-    html+=`<div onclick="toggleGanasVerd('${v.nombre}')" style="
-      background:${sel?'rgba(155,109,255,0.15)':'var(--card)'};
-      border:1px solid ${sel?'var(--violet)':'var(--border)'};
-      border-radius:var(--r);padding:12px 14px;margin-bottom:8px;cursor:pointer;
-      display:flex;align-items:flex-start;gap:12px;">
-      <span style="font-size:1.4rem;flex-shrink:0;">${v.emoji}</span>
-      <div style="flex:1;">
-        <div style="font-family:'Caveat',cursive;font-size:1.05rem;color:${sel?'var(--violet-l)':'var(--white)'};">${v.nombre} ${sel?'⭐':''}</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4;">${v.usos}</div>
-        <div style="font-size:11px;color:var(--muted2);margin-top:2px;">💡 ${v.consejo}</div>
-      </div>
-    </div>`;
-  });
-
-  if(state.verdurasGanas&&state.verdurasGanas.length){
-    html+=`<div style="background:rgba(155,109,255,0.1);border:1px solid var(--border);border-left:3px solid var(--violet);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:10px 14px;font-size:13px;color:var(--muted);line-height:1.6;margin-top:.75rem;">
-      <strong style="color:var(--violet-l);">Marcadas:</strong> ${state.verdurasGanas.join(', ')} — la próxima vez que generes el menú estas verduras van a pesar más.
-    </div>`;
+function aplicarMod(valor){
+  const{dayIdx,tipo,modKey}=modState;
+  if(modKey==='guarnicion'){
+    const rid=tipo==='almuerzo'?state.menu[dayIdx].almuerzo_id:state.menu[dayIdx].cena_id;
+    const r=RECETAS.find(x=>x.id===rid);
+    if(r) r.guarnicion=valor;
   }
-
-  el.innerHTML=html;
+  closeModal('modal-mod'); save(); renderHoy(); renderSemana();
+  showToast(`✓ ${valor}`);
 }
 
-function toggleGanasVerd(nombre){
-  if(!state.verdurasGanas)state.verdurasGanas=[];
-  const idx=state.verdurasGanas.indexOf(nombre);
-  if(idx===-1){state.verdurasGanas.push(nombre);showToast(`⭐ ${nombre} marcada`);}
-  else{state.verdurasGanas.splice(idx,1);showToast("Desmarcada");}
-  save();renderVerdurasInner();
+// ═══════════ TIMER ═══════════
+let timerInterval=null,timerEnd=null,timerTotal=0;
+function openTimer(min,label){
+  timerTotal=min*60;
+  document.getElementById('timer-title').textContent='⏱ '+label;
+  updateTimerDisplay(timerTotal);
+  document.getElementById('timer-lbl').textContent='listo para iniciar';
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
+  document.getElementById('modal-timer').classList.add('open');
+}
+function startTimer(){
+  if(timerInterval) return;
+  timerEnd=Date.now()+(timerTotal*1000);
+  timerInterval=setInterval(()=>{
+    const left=Math.max(0,Math.round((timerEnd-Date.now())/1000));
+    updateTimerDisplay(left);
+    if(left===0){clearInterval(timerInterval);timerInterval=null;document.getElementById('timer-lbl').textContent='¡Listo! ✓';showToast("¡Tiempo!");}
+    else document.getElementById('timer-lbl').textContent='cocinando...';
+  },1000);
+}
+function resetTimer(){
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
+  updateTimerDisplay(timerTotal);
+  document.getElementById('timer-lbl').textContent='listo para iniciar';
+}
+function updateTimerDisplay(secs){
+  const h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60),s=secs%60;
+  document.getElementById('timer-clock').textContent=h>0?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 
-// ══════════════════════════════════════════════
-// MODALS / NAV
-// ══════════════════════════════════════════════
-function closeModal(id){document.getElementById(id).classList.remove('open');}
+// ═══════════ NAV ═══════════
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 
 function goTo(page,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   btn.classList.add('active');
-  if(page==='semana')renderSemana();
-  if(page==='compras')renderCompras();
-  if(page==='mas')renderMas();
+  if(page==='semana') renderSemana();
+  if(page==='compras') renderCompras();
+  if(page==='mas') renderMas();
 }
 
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
 
-// ══════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════
+// ═══════════ INIT ═══════════
 load();
+state.currentSeason=getSeason();
 renderHoy();
 </script>
 </body>
