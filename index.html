@@ -287,18 +287,22 @@ const RECETAS = [
 ];
 
 const COMPRA_REAL = {
-  papa:{unit:"kg",per:1,pack:1},zanahoria:{unit:"kg",per:1,pack:1},
-  zapallo:{unit:"kg",per:0.5,pack:0.5},cebolla:{unit:"kg",per:1,pack:1},
-  tomate:{unit:"kg",per:1,pack:1},morrón:{unit:"u",per:1,pack:2},
-  berenjena:{unit:"u",per:1,pack:1},lechuga:{unit:"u",per:1,pack:1},
-  garbanzos:{unit:"g",per:300,pack:500},arvejas:{unit:"g",per:300,pack:500},
-  "porotos blancos":{unit:"g",per:300,pack:500},"porotos negros":{unit:"g",per:300,pack:500},
-  "maíz pisado blanco":{unit:"g",per:200,pack:500},"soja texturizada":{unit:"g",per:100,pack:200},
-  "harina de maíz (polenta)":{unit:"g",per:150,pack:500},fideos:{unit:"g",per:80,pack:500},
-  "milanesa de soja":{unit:"u",per:2,pack:4},"milanesa de avena":{unit:"u",per:2,pack:4},
-  huevos:{unit:"docena",per:1,pack:1},"queso rallado":{unit:"g",per:40,pack:200},
-  "queso fresco":{unit:"g",per:100,pack:200},"queso crema":{unit:"u",per:1,pack:1},
-  "aceite de oliva":{unit:"botella",per:1,pack:1},
+  // unit: unidad de compra, per: cantidad por uso, pack: unidad minima de venta, max: tope maximo
+  papa:{unit:"kg",per:0.3,pack:1,max:2},zanahoria:{unit:"kg",per:0.2,pack:1,max:1},
+  zapallo:{unit:"kg",per:0.3,pack:0.5,max:1.5},cebolla:{unit:"kg",per:0.15,pack:1,max:1},
+  tomate:{unit:"kg",per:0.2,pack:1,max:2},morrón:{unit:"u",per:0.5,pack:1,max:4},
+  berenjena:{unit:"u",per:0.5,pack:1,max:2},lechuga:{unit:"u",per:0.25,pack:1,max:1},
+  garbanzos:{unit:"g",per:300,pack:500,max:1000},arvejas:{unit:"g",per:300,pack:500,max:1000},
+  "porotos blancos":{unit:"g",per:300,pack:500,max:1000},"porotos negros":{unit:"g",per:300,pack:500,max:1000},
+  "maíz pisado blanco":{unit:"g",per:200,pack:500,max:500},"soja texturizada":{unit:"g",per:100,pack:200,max:400},
+  "harina de maíz (polenta)":{unit:"g",per:150,pack:500,max:500},fideos:{unit:"g",per:80,pack:500,max:500},
+  "milanesa de soja":{unit:"u",per:2,pack:4,max:8},"milanesa de avena":{unit:"u",per:2,pack:4,max:8},
+  huevos:{unit:"docena",per:0.5,pack:1,max:2},"queso rallado":{unit:"g",per:40,pack:200,max:400},
+  "queso fresco":{unit:"g",per:100,pack:200,max:400},"queso crema":{unit:"u",per:1,pack:1,max:2},
+  "aceite de oliva":{unit:"botella",per:1,pack:1,max:1},
+  ajo:{unit:"cabeza",per:0.3,pack:1,max:2},laurel:{unit:"sobre",per:0,pack:0,max:0},
+  "aceite de oliva":{unit:"botella",per:0,pack:0,max:1},
+  "pimentón dulce":{unit:"sobre",per:0,pack:0,max:0},"pimentón ahumado":{unit:"sobre",per:0,pack:0,max:0},
 };
 
 const VERDURAS_ESTACION = {
@@ -733,15 +737,22 @@ const VERDULERIA_K=['papa','zapallo','zanahoria','cebolla','tomate','morrón','a
 const DIETETICA_K=['garbanzos','porotos','arvejas','maíz','soja texturizada','milanesa de soja','milanesa de avena','harina de maíz','fideos'];
 
 function calcCompraQty(ing,n){
-  const r=COMPRA_REAL[ing.toLowerCase()];
+  const key=ing.toLowerCase();
+  const r=COMPRA_REAL[key]||COMPRA_REAL[ing];
   if(!r)return null;
-  const packs=Math.ceil((r.per*n)/r.pack);
-  const qty=packs*r.pack;
-  if(r.unit==='kg')return qty<1?`${qty*1000}g`:`${qty}kg`;
+  if(r.max===0)return null; // condimento seco, no calcular cantidad
+  if(r.pack===0)return null;
+  let qty=Math.min(r.per*n, r.max||999); // aplicar tope maximo
+  const packs=Math.ceil(qty/r.pack);
+  qty=packs*r.pack;
+  if(r.max)qty=Math.min(qty,r.max); // segundo control post-pack
+  if(r.unit==='kg')return qty<1?`${Math.round(qty*1000)}g`:`${qty}kg`;
   if(r.unit==='g')return`${qty}g`;
   if(r.unit==='docena')return`${packs} docena${packs>1?'s':''}`;
-  if(r.unit==='u')return`${qty} u`;
+  if(r.unit==='u')return`${Math.round(qty)} u`;
+  if(r.unit==='cabeza')return`${Math.ceil(qty)} cabeza${Math.ceil(qty)>1?'s':''}`;
   if(r.unit==='botella')return'1 botella';
+  if(r.unit==='sobre')return null;
   return`${qty} ${r.unit}`;
 }
 
@@ -769,6 +780,7 @@ function buildShoppingList(){
     else if(DIETETICA_K.some(v=>lc.includes(v)))bucket='dietetica';
     // calcCompraQty usa data.n para calcular cantidad real de compra
     const qty=calcCompraQty(ing,data.n)||data.qty;
+    if(!qty)return; // condimento seco, no mostrar
     places[bucket].push({ing,qty,n:data.n});
   });
   // Ordenar cada seccion alfabeticamente
@@ -919,7 +931,7 @@ function renderRecetasInner(){
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
         <button class="react-btn" style="font-size:20px;" onclick="toggleFavR(${r.id})">${isFav?'❤️':'🤍'}</button>
-        <button class="react-btn" style="font-size:16px;" onclick="toggleMalaR(${r.id})">${isMala?'👎':'·'}</button>
+        <button class="react-btn" style="font-size:16px;" title="${isMala?'Restaurar':'No me gustó'}" onclick="toggleMalaR(${r.id})">${isMala?'👎':'·'}</button>
       </div>
     </div>`;
   }).join('');
